@@ -1,5 +1,5 @@
-#ifndef game_factory
-#define game_factory
+#ifndef GameFactory
+#define GameFactory
 
 #include "Centre.h"
 #include "Tiles.h"
@@ -16,4 +16,4 @@ class Factory {
 
 
 
-#endif // game_factory
+#endif // GameFactory

@@ -1,5 +1,5 @@
-#ifndef game_player
-#define game_player
+#ifndef GamePlayer
+#define GamePlayer
 
 #include "Mosaic.h"
 
@@ -14,4 +14,4 @@ class Player {
 };
 
 
-#endif // game_player
+#endif // GamePlayer

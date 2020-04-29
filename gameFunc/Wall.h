@@ -1,5 +1,5 @@
-#ifndef mosaic_wall
-#define mosaic_wall
+#ifndef MosaicWall
+#define MosaicWall
 
 
 
@@ -14,4 +14,4 @@ class Wall {
 };
 
 
-#endif // mosaic_wall
+#endif // MosaicWall

@@ -1,5 +1,5 @@
-#ifndef factory_centre
-#define factory_centre
+#ifndef FactoryCentre
+#define FactoryCentre
 
 class Centre {
     public:
@@ -12,4 +12,4 @@ class Centre {
 };
 
 
-#endif // factory_centre
+#endif // FactoryCentre

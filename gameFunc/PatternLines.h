@@ -1,5 +1,5 @@
-#ifndef player_pattern_lines
-#define player_pattern_lines
+#ifndef PlayerPatternLines
+#define PlayerPatternLines
 
 #include "Line.h"
 
@@ -15,4 +15,4 @@ class PatternLines {
 };
 
 
-#endif // pattern_lines
+#endif // PlayerPatternLines

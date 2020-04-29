@@ -1,5 +1,5 @@
-#ifndef mosaic_line
-#define mosaic_line
+#ifndef MosaicLine
+#define MosaicLine
 
 #include "Factory.h"
 
@@ -14,4 +14,4 @@ class Line {
 };
 
 
-#endif // mosaic_line
+#endif // MosaicLine

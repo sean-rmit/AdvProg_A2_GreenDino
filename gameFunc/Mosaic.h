@@ -1,5 +1,5 @@
-#ifndef player_mosaic
-#define player_mosaic
+#ifndef PlayerMosaic
+#define PlayerMosaic
 
 #include "Wall.h"
 #include "Line.h"
@@ -16,4 +16,4 @@ class Mosaic {
 };
 
 
-#endif // player_mosaic
+#endif // PlayerMosaic
