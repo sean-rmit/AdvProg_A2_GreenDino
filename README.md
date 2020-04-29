@@ -11,7 +11,7 @@ Group Members:
 
 Week 8 Task (Ongoing):
 Choice of where to use linked list, vector & array
-- Tiles in TileBag: array (good for shuffling tiles, tiles only removed from the top)
+- Tiles in TileBag: array (tiles can be shuffled, size can be allocated dynamically from a saved game file)
 - Tiles in LidBox: linked list (only receives tiles during the game and delete the entire linked list at the end of the game)
 - Tiles in Centre: vector (tiles would need to be accessed from any position the list and resized quickly)
 - Tiles in PatternLine: array (fixed length of arrays needed, namely of size 1,2,3,4,5)
