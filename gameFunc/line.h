@@ -1,13 +1,13 @@
 #ifndef mosaic_line
 #define mosaic_line
 
-#include "factory.h"
+#include "Factory.h"
 
-class line {
+class Line {
     public:
 
-    line();
-    ~line();
+    Line();
+    ~Line();
 
     private:
 

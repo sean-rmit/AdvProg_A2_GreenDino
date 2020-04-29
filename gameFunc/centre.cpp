@@ -1,9 +1,9 @@
-#include "centre.h"
+#include "Centre.h"
 
-centre::centre() {
+Centre::Centre() {
 
 }
 
-centre::~centre() {
+Centre::~Centre() {
     
 }

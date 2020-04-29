@@ -1,14 +1,14 @@
 #ifndef game_factory
 #define game_factory
 
-#include "centre.h"
-#include "tiles.h"
+#include "Centre.h"
+#include "Tiles.h"
 
-class factory {
+class Factory {
     public:
 
-    factory();
-    ~factory();
+    Factory();
+    ~Factory();
 
     private:
 

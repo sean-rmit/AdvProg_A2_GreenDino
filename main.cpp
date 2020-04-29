@@ -3,8 +3,8 @@
 #define EXIT_SUCCESS    0
 #define PAGEWIDTH       80
 
-#include "factory.h"
-#include "mosaic.h"
+#include "Factory.h"
+#include "Mosaic.h"
 
 void mainMenuPage();
 void creditsPage();

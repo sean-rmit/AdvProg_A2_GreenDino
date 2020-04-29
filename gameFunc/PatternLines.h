@@ -1,14 +1,14 @@
 #ifndef player_pattern_lines
 #define player_pattern_lines
 
-#include "line.h"
+#include "Line.h"
 
 
-class pattern_lines {
+class PatternLines {
     public:
 
-    pattern_lines();
-    ~pattern_lines();
+    PatternLines();
+    ~PatternLines();
 
     private:
     

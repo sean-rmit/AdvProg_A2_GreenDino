@@ -1,9 +1,9 @@
-#include "mosaic.h"
+#include "Mosaic.h"
 
-mosaic::mosaic() {
+Mosaic::Mosaic() {
 
 }
 
-mosaic::~mosaic() {
+Mosaic::~Mosaic() {
 
 }

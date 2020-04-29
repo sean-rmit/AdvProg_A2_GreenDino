@@ -1,9 +1,9 @@
-#include "wall.h"
+#include "Wall.h"
 
-wall::wall() {
+Wall::Wall() {
 
 }
 
-wall::~wall() {
+Wall::~Wall() {
     
 }

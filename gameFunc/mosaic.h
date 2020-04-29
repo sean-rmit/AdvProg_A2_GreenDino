@@ -1,15 +1,15 @@
 #ifndef player_mosaic
 #define player_mosaic
 
-#include "wall.h"
-#include "line.h"
+#include "Wall.h"
+#include "Line.h"
 
 
-class mosaic {
+class Mosaic {
     public:
 
-    mosaic();
-    ~mosaic();
+    Mosaic();
+    ~Mosaic();
 
     private:
 

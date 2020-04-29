@@ -1,13 +1,13 @@
 #ifndef game_player
 #define game_player
 
-#include "mosaic.h"
+#include "Mosaic.h"
 
-class player {
+class Player {
     public:
 
-    player();
-    ~player();
+    Player();
+    ~Player();
 
     private:
 

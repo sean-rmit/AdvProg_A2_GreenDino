@@ -1,9 +1,9 @@
-#include "line.h"
+#include "Line.h"
 
-line::line() {
+Line::Line() {
 
 }
 
-line::~line() {
+Line::~Line() {
     
 }

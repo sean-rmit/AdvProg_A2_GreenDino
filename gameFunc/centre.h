@@ -1,11 +1,11 @@
 #ifndef factory_centre
 #define factory_centre
 
-class centre {
+class Centre {
     public:
 
-    centre();
-    ~centre();
+    Centre();
+    ~Centre();
 
     private:
 

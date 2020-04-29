@@ -3,11 +3,11 @@
 
 
 
-class wall {
+class Wall {
     public:
 
-    wall();
-    ~wall();
+    Wall();
+    ~Wall();
 
     private:
 

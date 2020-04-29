@@ -1,9 +1,9 @@
-#include "factory.h"
+#include "Factory.h"
 
-factory::factory() {
+Factory::Factory() {
 
 }
 
-factory::~factory() {
+Factory::~Factory() {
 
 }
