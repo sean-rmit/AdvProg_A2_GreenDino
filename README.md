@@ -9,6 +9,8 @@ Group Members:
 
 Week 8 Task (Ongoing):
 Choice of where to use linked list, vector & array
+- Tiles in TileBag
+- Tiles in LidBox
 - Tiles in Centre
 - Lines in PatternLine
 - Tiles Factory
