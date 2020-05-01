@@ -9,5 +9,6 @@
 #define BLACK           'U'
 #define NOTILE          '.'
 
+typedef char* tilePtr;
 
 #endif // tiles
