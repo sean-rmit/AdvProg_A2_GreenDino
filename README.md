@@ -17,6 +17,6 @@ Choice of where to use linked list, vector & array
 - Tiles in PatternLine: array (fixed length of arrays needed, namely of size 1,2,3,4,5)
 - Tiles in Wall: array (fixed length of arrays needed, namely of size 5,5,5,5,5)
 - Tiles in Factory: vector (tiles would need to be accessed from any position the list and resized quickly)
-- Tiles in PenaltyLine: linked list (only receives tiles during the game and just need to return its length every round)
+- Tiles in PenaltyLine: array (fixed length)
 (add more if u can think of any)
 
