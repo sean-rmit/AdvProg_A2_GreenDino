@@ -18,25 +18,30 @@ Factory::~Factory()
 
 int Factory::size()
 {
-  tile.resize(5);
+  // tile.resize(5); owo whats this?
   return tile.size();
 }
 
-void Factory::addTile(tilePtr tileP) {
+void Factory::addTile(tilePtr tileP)
+{
   tile.push_back(tileP);
 }
 
-void Factory::removeTiles(int index)
-{
-  if (tile.size() > 0 && index >= 0 && index < tile.size())
-  {
-    for (int i = index; i < tile.size() - 1; ++i)
-    {
-      tile[i] = tile[i + 1];
-    }
+tilePtr Factory::getTile(int index) {
 
-    tile.pop_back();
+}
+
+tilePtr Factory::removeTiles(char c)
+{
+  for (int i = 0; i < tile.size(); i++) {
+    if (*tile.getTile() == c) {
+      
+    }
   }
+}
+
+void Factory::moveAllTilesToCentre(Centre *centre) {
+
 }
 
 void Factory::clear()
@@ -44,13 +49,9 @@ void Factory::clear()
   tile.clear();
 }
 
-void Factory::loadFactory()
-{
+void Factory::loadFactory(Bag *bag) {
   clear();
-
-  std::cout << "Factories:\n";
-  tilePtr tile = new char(RED);
-  
-  //TODO
-
+  for (int i = 0; i < FACTORY_SIZE; i++) {
+    addTile(bag->removeTileFront());
+  }
 }

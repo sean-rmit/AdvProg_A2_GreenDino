@@ -42,11 +42,13 @@ void Bag::addTileToBack(tilePtr tile) {
     }
 }
 
-void Bag::removeTileFront() {
+tilePtr Bag::removeTileFront() {
     if (bag->head != nullptr) {
-        Node* toDelete = bag->head;
+        Node* toRemove = bag->head;
         bag->head = bag->head->next;
-        delete toDelete;
+        tilePtr tile = toRemove->tile;
+        delete toRemove;
+        return tile;
     } else {
         throw std::logic_error("Deleting on empty list");
     }

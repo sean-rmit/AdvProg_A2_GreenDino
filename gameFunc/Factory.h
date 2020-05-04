@@ -8,6 +8,8 @@
 #include "Tiles.h"
 #include "TileBag.h"
 
+#define FACTORY_SIZE 4
+
 class Factory {
     public:
 
@@ -23,14 +25,17 @@ class Factory {
     // adds tiles to factory
     void addTile(tilePtr tileP);
 
+    tilePtr getTile(int index);
+
     // removes tiles from a factory
-    void removeTiles(int index);
+    tilePtr removeTiles(char c);
+    void moveAllTilesToCentre(Centre *centre);
 
     // removes all tiles from factories
     void clear();
 
     // load factories with randomised tile selection
-    void loadFactory();
+    void loadFactory(Bag *bag);
 
     private:
 
