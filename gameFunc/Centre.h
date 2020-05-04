@@ -28,7 +28,7 @@ class Centre {
 
     private:
 
-    std::vector<tilePtr> tile;
+    std::vector<tilePtr> centreTiles;
 
 };
 

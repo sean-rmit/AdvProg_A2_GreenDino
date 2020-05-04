@@ -1,42 +1,43 @@
 #include "Centre.h"
 
-Centre::Centre() : tile()
+Centre::Centre() : centreTiles()
 {
 }
 
 Centre::Centre(Centre &other)
 {
-  clear();
 }
 
 Centre::~Centre()
 {
+  clear();
 }
 
 int Centre::size()
 {
-  tile.resize(1);
-  return tile.size();
+  centreTiles.resize(1);
+  return centreTiles.size();
 }
 
-void Centre::addTile(tilePtr tileP) {
-  tile.push_back(tileP);
+void Centre::addTile(tilePtr tileP)
+{
+  centreTiles.push_back(tileP);
 }
 
 void Centre::removeTiles(int index)
 {
-  if (tile.size() > 0 && index >= 0 && index < tile.size())
+  if (centreTiles.size() > 0 && index >= 0 && index < centreTiles.size())
   {
-    for (int i = index; i < tile.size() - 1; ++i)
+    for (int i = index; i < centreTiles.size() - 1; ++i)
     {
-      tile[i] = tile[i + 1];
+      centreTiles[i] = centreTiles[i + 1];
     }
 
-    tile.pop_back();
+    centreTiles.pop_back();
   }
 }
 
 void Centre::clear()
 {
-  tile.clear();
+  centreTiles.clear();
 }

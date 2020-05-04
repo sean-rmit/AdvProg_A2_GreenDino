@@ -1,20 +1,33 @@
 #ifndef MosaicLine
 #define MosaicLine
 
-#include "Factory.h"
-
-#define MAX_PATTERN_LINE 5
+#include "Tiles.h"
+#include <string>
 
 class Line {
-    public:
+public:
 
     Line();
+    Line(int length);
     ~Line();
+    int size();
+    int getTilesNumber();
+
+    // although these two functions exists in the same class, they cannot be called simultaneously
+    void addTileToBack(tilePtr tile);
+    void addTileToIndex(tilePtr tile, int index);
+
+    bool hasTile(int index);
+    tilePtr removeTile(int index);
+    std::string getTilesAsString();
     
-    private:
+private:
+    tilePtr* line;
+    int array_length; //size of the array of line
+    int length; // number of tiles in array of line
 };
 
-typedef Line* LinePtr;
+// typedef Line* LinePtr;
 
 
 #endif // MosaicLine
