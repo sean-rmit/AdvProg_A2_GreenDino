@@ -3,55 +3,42 @@
 
 #include "Factory.h"
 
-Factory::Factory() : tile()
-{
+Factory::Factory() {
+    factoryTiles = new Line(FACTORY_SIZE);
 }
 
-Factory::Factory(Factory &other)
-{
-}
-
-Factory::~Factory()
-{
-  clear();
-}
-
-int Factory::size()
-{
-  // tile.resize(5); owo whats this?
-  return tile.size();
-}
-
-void Factory::addTile(tilePtr tileP)
-{
-  tile.push_back(tileP);
-}
-
-tilePtr Factory::getTile(int index) {
+Factory::Factory(Factory &other) {
 
 }
 
-tilePtr Factory::removeTiles(char c)
+Factory::~Factory() {
+    delete factoryTiles;
+}
+
+void Factory::playerTakesTiles(char colour, Player *player, Centre *centre, int patternLineIndex)
 {
-  for (int i = 0; i < tile.size(); i++) {
-    if (*tile.getTile() == c) {
-      
+    for (int i = 0; i < FACTORY_SIZE; i++) {
+        if (factoryTiles->hasTile(i)) {
+            if (factoryTiles->getTileColour(i) == colour) {
+                player->putTileToPatternLine(factoryTiles->removeTile(i), patternLineIndex);
+            }
+            else {
+                centre->addTile(factoryTiles->removeTile(i));
+            }
+        }
+        else {
+            throw std::logic_error("Factory: Deleting on index with empty tile");
+        }
     }
-  }
-}
-
-void Factory::moveAllTilesToCentre(Centre *centre) {
-
-}
-
-void Factory::clear()
-{
-  tile.clear();
 }
 
 void Factory::loadFactory(Bag *bag) {
-  clear();
-  for (int i = 0; i < FACTORY_SIZE; i++) {
-    addTile(bag->removeTileFront());
-  }
+    if (factoryTiles->getTilesNumber() == 0) {
+        for (int i = 0; i < FACTORY_SIZE; i++) {
+            factoryTiles->addTileToIndex(bag->removeTileFront(), i);
+        }
+    }
+    else {
+        throw std::logic_error("Factory: Tiles present when trying to load factory");
+    }
 }

@@ -1,82 +1,35 @@
 #include "PatternLines.h"
 
-PatternLines::PatternLines()
-{
-  length = 0;
-  line = new LinePtr[MAX_PATTERN_LINE];
+PatternLines::PatternLines() {
+    patternLines = new linePtr[PATTERN_LINES_NUM];
+    for (int i = 0; i < PATTERN_LINES_NUM; i++) {
+        Line *line = new Line(i+1);
+        patternLines[i] = line;
+    }
 }
 
-PatternLines::PatternLines(PatternLines &other) : PatternLines()
-{
-  length = other.length;
-  for (int i = 0; i != length; ++i)
-  {
-    line[i] = new Line(*other.line[i]);
-  }
+PatternLines::~PatternLines() {
+    for (int i = 0; i < PATTERN_LINES_NUM; i++) {
+        delete patternLines[i];
+    }
+    delete patternLines;
 }
 
-PatternLines::~PatternLines()
-{
-  clear();
+PatternLines::PatternLines(PatternLines &other) : PatternLines() {
+
 }
 
-void PatternLines::patternLineArray()
+linePtr PatternLines::getLine(int index)
 {
-
-  // iterating through array
-  for (int i = 0; i < MAX_PATTERN_LINE; i++)
-  {
-    // TODO
-  }
-
-  // nullptr check
-  for (int i = 0; i != MAX_PATTERN_LINE; ++i)
-  {
-    line[i] = nullptr;
-  }
+    return patternLines[index];
 }
 
-int PatternLines::size()
-{
-  return length;
-}
-
-void PatternLines::addTile(tilePtr lineTile)
-{
-  if (length != MAX_PATTERN_LINE)
-  {
-    tile[length] = lineTile;
-    ++length;
-  }
-}
-
-void PatternLines::clear()
-{
-  for (int i = 0; i != length; ++i)
-  {
-    delete tile[i];
-    tile[i] = nullptr;
-  }
-}
-
-LinePtr PatternLines::getLine(int index)
-{
-  LinePtr patternLine = nullptr;
-  if (index >= 0 && index < length)
-  {
-    patternLine = line[index];
-  }
-  return patternLine;
-}
-
-// TODO
-tilePtr PatternLines::getColour()
-{
-  tilePtr tile = nullptr;
-  int index = 0;
-  if (index >= 0 && index < length)
-  {
-    tile = &colour;
-  }
-  return tile;
+void PatternLines::moveAllTilesToWall(Wall *wall, Lid *lid) {
+    for (int i = 0; i < PATTERN_LINES_NUM; i++) {
+        for (int i = 0; i < patternLines[i]->size(); i++) {
+            if (patternLines[i]->hasTile(i)) {
+                wall->receiveTileFromPatternLine(patternLines[i]->removeTile(i), i, lid);
+            }
+        }
+    }
 }

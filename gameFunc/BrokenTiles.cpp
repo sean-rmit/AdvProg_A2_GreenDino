@@ -1,5 +1,6 @@
 #include "BrokenTiles.h"
 
+
 BrokenTiles::BrokenTiles() {
     brokenTiles = new Line(MAX_BROKEN_TILES);
 }

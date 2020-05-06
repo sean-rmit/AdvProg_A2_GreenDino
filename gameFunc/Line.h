@@ -4,6 +4,8 @@
 #include "Tiles.h"
 #include <string>
 
+typedef Line* linePtr;
+
 class Line {
 public:
 
@@ -17,6 +19,7 @@ public:
     void addTileToBack(tilePtr tile);
     void addTileToIndex(tilePtr tile, int index);
 
+    char getTileColour(int index);
     bool hasTile(int index);
     tilePtr removeTile(int index);
     std::string getTilesAsString();
@@ -24,7 +27,7 @@ public:
 private:
     tilePtr* line;
     int array_length; //size of the array of line
-    int length; // number of tiles in array of line
+    int numTiles; // number of tiles in array of line
 };
 
 // typedef Line* LinePtr;

@@ -7,6 +7,7 @@
 #include "Centre.h"
 #include "Tiles.h"
 #include "TileBag.h"
+#include "Player.h"
 
 #define FACTORY_SIZE 4
 
@@ -27,9 +28,8 @@ class Factory {
 
     tilePtr getTile(int index);
 
-    // removes tiles from a factory
-    tilePtr removeTiles(char c);
-    void moveAllTilesToCentre(Centre *centre);
+    // removes tiles from a factory to player board and centre
+    void playerTakesTiles(char c, Player *player, Centre *centre, int patternLineIndex);
 
     // removes all tiles from factories
     void clear();
@@ -39,7 +39,7 @@ class Factory {
 
     private:
 
-    std::vector<tilePtr> tile;
+    Line *factoryTiles;
 
 };
 

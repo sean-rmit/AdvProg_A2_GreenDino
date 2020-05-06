@@ -3,6 +3,10 @@
 
 #include "Line.h"
 #include "Tiles.h"
+#include "Wall.h"
+#include "BoxLid.h"
+
+#define PATTERN_LINES_NUM 5
 
 class PatternLines {
     public:
@@ -13,31 +17,13 @@ class PatternLines {
     // copy constructor
     PatternLines(PatternLines& other);
 
-    // return current size of patternline
-    int size();
+    // get line object at given index
+    linePtr getLine(int index);
 
-    // get line element at given index
-    LinePtr getLine(int index);
-
-    // get colour of tile
-    tilePtr getColour();
-
-    // add tile to line
-    void addTile(tilePtr lineTile);
-
-    // removes all tiles from a line
-    void clear();
-
-    // iterate through array of pattern line
-    void patternLineArray();
+    void moveAllTilesToWall(Wall *wall, Lid *lid);
 
     private:
-
-    int length;
-    char colour;
-    LinePtr* line;
-    tilePtr* tile;
-    
+    linePtr *patternLines;
 };
 
 

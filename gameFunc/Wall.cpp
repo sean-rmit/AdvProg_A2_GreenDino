@@ -1,78 +1,45 @@
 #include "Wall.h"
 
-Wall::Wall()
-{
-  length = 0;
-  wall = new LinePtr[MAX_PATTERN_LINE];
-}
-
-Wall::Wall(Wall &other) : Wall()
-{
-  length = other.length;
-  for (int i = 0; i != length; ++i)
-  {
-    wall[i] = new Line(*other.wall[i]);
-  }
-}
-
-Wall::~Wall()
-{
-  clear();
-}
-
-void Wall::wallArray()
-{
-  int x = 0;
-  int y = 0;
-
-  // fixed wall size
-  for (int i = 0; i < MAX_PATTERN_LINE; i++)
-  {
-    for (int j = 0; j < MAX_PATTERN_LINE; j++)
-    {
-      x = j;
-      y = i;
+Wall::Wall() {
+    wallLines = new linePtr[WALL_LINES_NUM];
+    for (int i = 0; i < WALL_LINES_NUM; i++) {
+        Line *line = new Line(5);
+        wallLines[i] = line;
     }
-  }
-
-  // nullptr check
-  for (int i = 0; i != MAX_PATTERN_LINE; ++i)
-  {
-    wall[i] = nullptr;
-  }
+    fixedColourPattern = new linePtr[WALL_LINES_NUM];
+    for (int i = 0; i < WALL_LINES_NUM; i++) {
+        Line *line = new Line(5);
+        fixedColourPattern[i] = line;
+    }
 }
 
-void Wall::addTile(tilePtr lineTile)
-{
-  if (length != MAX_PATTERN_LINE)
-  {
-    tile[length] = lineTile;
-    ++length;
-  }
+Wall::~Wall() {
+    for (int i = 0; i < WALL_LINES_NUM; i++) {
+        delete wallLines[i];
+    }
+    delete wallLines;
 }
 
-tilePtr *Wall::getPtr(int i) {
-  return &tile[i];
+Wall::Wall(Wall& other) {
+
 }
 
-int Wall::size()
-{
-  return length;
+void Wall::initialiseFixedColourPattern() {
+    // read in from an external file
+
 }
 
-int Wall::getX() {
-  return x;
+linePtr Wall::getLine(int index) {
+    return wallLines[index];
 }
 
-int Wall::getY() {
-  return y;
-}
-
-void Wall::clear()
-{
-  for (int i = 0; i != length; ++i)
-  {
-    delete tile[i];
-    tile[i] = nullptr;
-  }
+void Wall::receiveTileFromPatternLine(tilePtr tile, int lineIndex, Lid *lid) {
+    for (int i = 0; i < WALL_LINES_NUM; i++) {
+        if (fixedColourPattern[lineIndex]->getTileColour(i) == *tile) {
+            wallLines[lineIndex]->addTileToIndex(tile, i);
+        }
+        else {
+            lid->addTileToBack(tile);
+        }
+    }
 }

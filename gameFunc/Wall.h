@@ -2,44 +2,29 @@
 #define MosaicWall
 
 #include "Line.h"
+#include "BoxLid.h"
+
+#define WALL_LINES_NUM 5
 
 class Wall {
-    public:
+public:
 
     Wall();
     ~Wall();
 
     // copy constructor
     Wall(Wall& other);
+    
+    void initialiseFixedColourPattern();
 
-    // current size of wall
-    int size();
+    // get line object at given index
+    linePtr getLine(int index);
 
-    // get x-coordinate of tile location
-    int getX();
+    void receiveTileFromPatternLine(tilePtr tile, int lineIndex, Lid *lid);
 
-    // get y-coordinate of tile location
-    int getY();
-
-    // iterate through wall array
-    void wallArray();
-
-    // add tile to wall
-    void addTile(tilePtr lineTile);
-
-    tilePtr* getPtr(int i);
-
-    // removes all tiles from the wall
-    void clear();
-
-    private:
-
-    LinePtr* wall;
-    tilePtr* tile;
-    int length;
-    int x;
-    int y;
-
+private:
+    linePtr *wallLines;
+    linePtr *fixedColourPattern;
 };
 
 

@@ -2,6 +2,7 @@
 #define PlayerMosaic
 
 #include "Wall.h"
+#include "PatternLines.h"
 #include "Line.h"
 
 
@@ -11,8 +12,13 @@ class Mosaic {
     Mosaic();
     ~Mosaic();
 
-    private:
+    Wall getPlayerWall();
+    PatternLines getPlayerPatternLines();
+    void putTileToPatternLine(tilePtr tile, int patternLineIndex);
 
+    private:
+        Wall *playerWall;
+        PatternLines *playerPatternLines;
 };
 
 

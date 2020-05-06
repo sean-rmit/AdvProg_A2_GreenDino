@@ -5,11 +5,11 @@
 
 Line::Line() {
     this->array_length = 0;
-    length = 0;
+    numTiles = 0;
 }
 
 Line::Line(int length) {
-    this->length = 0;
+    this->numTiles = 0;
     this->array_length = length;
     line = new tilePtr[array_length];
     for (int i = 0; i < length; i++) {
@@ -26,17 +26,21 @@ int Line::size() {
 }
 
 int Line::getTilesNumber() {
-    return length;
+    return numTiles;
 }
 
 void Line::addTileToBack(tilePtr tile) {
-    line[length] = tile;
-    length++;
+    line[numTiles] = tile;
+    numTiles++;
 }
 
 void Line::addTileToIndex(tilePtr tile, int index) {
     line[index] = tile;
-    length++;
+    numTiles++;
+}
+
+char Line::getTileColour(int index) {
+    return *line[index];
 }
 
 bool Line::hasTile(int index) {
@@ -51,10 +55,10 @@ tilePtr Line::removeTile(int index) {
     if (line[index] != nullptr) {
         tilePtr tile = line[index];
         line[index] = nullptr;
-        length--;
+        numTiles--;
         return tile;
     } else {
-        throw std::logic_error("Deleting on index with empty tile");
+        throw std::logic_error("Line: Deleting on index with empty tile");
     }
 }
 
