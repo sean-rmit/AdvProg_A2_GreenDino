@@ -4,7 +4,7 @@
 #include "Tiles.h"
 #include <string>
 
-//typedef Line* linePtr;
+typedef Line* linePtr;
 
 class Line {
 public:
