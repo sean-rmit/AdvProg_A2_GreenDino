@@ -3,17 +3,7 @@
 
 #include "Tiles.h"
 #include <string>
-
-class Node {
-public:
-   tilePtr tile;
-   Node* next;
-};
-
-class LinkedList {
-public:
-   Node* head;
-};
+#include "LinkedList.h"
 
 class Bag {
 public:
