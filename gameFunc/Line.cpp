@@ -54,7 +54,7 @@ char Line::getTileColour(int index) {
         return *line[index];
     }
     else {
-        std::cout << "ERROR: index out of bounds of line range" << std::endl;
+        throw std::logic_error("ERROR: index out of bounds of line range");
     }
 }
 
