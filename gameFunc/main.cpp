@@ -3,9 +3,6 @@
 #define EXIT_SUCCESS    0
 #define PAGEWIDTH       80
 
-#include "Factory.h"
-#include "Mosaic.h"
-
 void mainMenuPage();
 void creditsPage();
 void printString(std::string s, int num);

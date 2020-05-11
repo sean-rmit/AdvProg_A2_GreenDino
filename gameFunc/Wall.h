@@ -2,6 +2,7 @@
 #define MosaicWall
 
 #include "Line.h"
+#include "PatternLines.h"
 #include "BoxLid.h"
 
 #define WALL_LINES_NUM 5

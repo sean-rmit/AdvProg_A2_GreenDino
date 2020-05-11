@@ -30,34 +30,59 @@ int Line::getTilesNumber() {
 }
 
 void Line::addTileToBack(tilePtr tile) {
-    line[numTiles] = tile;
-    numTiles++;
+    if (numTiles < array_length) {
+        line[numTiles] = tile;
+        numTiles++;
+    }
+    else {
+        std::cout << "ERROR: exceeded line size" << std::endl;
+    }
 }
 
 void Line::addTileToIndex(tilePtr tile, int index) {
-    line[index] = tile;
-    numTiles++;
+    if (index >= 0 && index < array_length) {
+        line[index] = tile;
+        numTiles++;
+    }
+    else {
+        std::cout << "ERROR: index out of bounds of line range" << std::endl;
+    }
 }
 
 char Line::getTileColour(int index) {
-    return *line[index];
+    if (index >= 0 && index < array_length) {
+        return *line[index];
+    }
+    else {
+        std::cout << "ERROR: index out of bounds of line range" << std::endl;
+    }
 }
 
 bool Line::hasTile(int index) {
-    if (line[index] != nullptr) {
-        return true;
-    } else {
-        return false;
+    if (index >= 0 && index < array_length) {
+        if (line[index] != nullptr) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    else {
+        throw std::logic_error("ERROR: index out of bounds of line range");
     }
 }
 
 tilePtr Line::removeTile(int index) {
-    if (line[index] != nullptr) {
-        tilePtr tile = line[index];
-        line[index] = nullptr;
-        numTiles--;
-        return tile;
-    } else {
+    if (index >= 0 && index < array_length) {
+        if (line[index] != nullptr) {
+            tilePtr tile = line[index];
+            line[index] = nullptr;
+            numTiles--;
+            return tile;
+        } else {
+            throw std::logic_error("ERROR: index out of bounds of line range");
+        }
+    }
+    else {
         throw std::logic_error("Line: Deleting on index with empty tile");
     }
 }

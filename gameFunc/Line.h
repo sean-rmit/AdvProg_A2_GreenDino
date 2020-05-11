@@ -4,8 +4,6 @@
 #include "Tiles.h"
 #include <string>
 
-typedef Line* linePtr;
-
 class Line {
 public:
 
@@ -30,7 +28,7 @@ private:
     int numTiles; // number of tiles in array of line
 };
 
-// typedef Line* LinePtr;
+typedef Line* linePtr;
 
 
 #endif // MosaicLine
