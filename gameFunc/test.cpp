@@ -82,6 +82,6 @@ int main(int argc, char **argv)
     
     Bag *bag2 = new Bag();
     bag2->addTileToBack(tile4);
-    //bag2->clearBag();
+    bag2->clearBag();
     std::cout << "tilebag: " << bag2->getTilesAsString() << std::endl;
 }
