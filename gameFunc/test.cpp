@@ -37,27 +37,6 @@ int main(int argc, char **argv)
     std::cout << "line1: " << line1->getTilesAsString() << std::endl;
     std::cout << "line2: " << line2->getTilesAsString() << std::endl;
 
-<<<<<<< HEAD
-    //testing patternlines
-    PatternLines *patternLines1 = new PatternLines();
-    patternLines1->getLine(1)->addTileToBack(tile1);
-    // patternLines1->getLine(1)->addTileToBack(tile2);
-    // patternLines1->getLine(1)->addTileToBack(tile3);
-    // patternLines1->getLine(1)->addTileToBack(tile4);
-    // patternLines1->getLine(1)->addTileToBack(tile5);
-    std::cout << "patternLine's line1: " <<patternLines1->getLine(1)->getTilesAsString() << std::endl;
-    std::cout << "patternLine's line2: " <<patternLines1->getLine(2)->getTilesAsString() << std::endl;
-    
-    // for (int i = 0; i < line1->size(); i++) {
-    //     if (patternLines1->getLine(1)->hasTile(i)) {
-    //     }
-    // }
-
-    patternLines1->getLine(2)->addTileToBack(patternLines1->getLine(1)->removeTile(0));
-
-    std::cout << "patternLine's line1: " <<patternLines1->getLine(1)->getTilesAsString() << std::endl;
-    std::cout << "patternLine's line2: " <<patternLines1->getLine(2)->getTilesAsString() << std::endl;
-=======
     // testing patternlines
     PatternLines *patternLines1 = new PatternLines();
     // patternLines1->getLine(1)->addTileToBack(tile1);
@@ -103,7 +82,6 @@ int main(int argc, char **argv)
     
     Bag *bag2 = new Bag();
     bag2->addTileToBack(tile4);
-    //bag2->clearBag();
+    bag2->clearBag();
     std::cout << "tilebag: " << bag2->getTilesAsString() << std::endl;
->>>>>>> 5202f13d6f8d236ebaaff465d3709c036eadffd9
 }
