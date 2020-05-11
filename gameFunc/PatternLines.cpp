@@ -3,11 +3,7 @@
 PatternLines::PatternLines() {
     patternLines = new linePtr[PATTERN_LINES_NUM];
     for (int i = 0; i < PATTERN_LINES_NUM; i++) {
-<<<<<<< HEAD
-        Line *line = new Line(i);
-=======
         Line *line = new Line(i + 1);
->>>>>>> 5202f13d6f8d236ebaaff465d3709c036eadffd9
         patternLines[i] = line;
     }
 }

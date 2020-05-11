@@ -9,29 +9,29 @@ int main() {
     std::string line;
 
     if (!savedFile.eof()) {
-        if (line.find("factory1")) {
+        if (line.find("FACTORY_0")) {
             getline(savedFile, line);
             std::cout << line << std::endl;
         }
-        if (line.find("factory2")) {
+        if (line.find("FACTORY_1")) {
             getline(savedFile, line);
             std::cout << line << std::endl;
         }
-        if (line.find("factory3")) {
+        if (line.find("FACTORY_2")) {
             getline(savedFile, line);
             std::cout << line << std::endl;
         }
-        if (line.find("factory4")) {
+        if (line.find("FACTORY_3")) {
             getline(savedFile, line);
             std::cout << line << std::endl;
         }
-        if (line.find("factory5")) {
+        if (line.find("FACTORY_4")) {
             getline(savedFile, line);
             std::cout << line << std::endl;
         }
     }
    
-    
+
     std::cout << std::endl;
     std::cout << "all file info: " << std::endl;
     while (!savedFile.eof()) {
