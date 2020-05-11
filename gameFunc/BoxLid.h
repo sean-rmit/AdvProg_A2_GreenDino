@@ -2,18 +2,19 @@
 #define BoxLid
 
 #include "Tiles.h"
+#include "LinkedList.h"
 #include <string>
 
-class Node {
-public:
-   tilePtr tile;
-   Node* next;
-};
+// class Node {
+// public:
+//    tilePtr tile;
+//    Node* next;
+// };
 
-class LinkedList {
-public:
-   Node* head;
-};
+// class LinkedList {
+// public:
+//    Node* head;
+// };
 
 class Lid {
 public:
