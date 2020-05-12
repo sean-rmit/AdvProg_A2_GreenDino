@@ -39,8 +39,10 @@ int main(int argc, char **argv)
 
     // testing patternlines
     PatternLines *patternLines1 = new PatternLines();
+    PatternLines *patternLines2 = new PatternLines();
     // patternLines1->getLine(1)->addTileToBack(tile1);
     patternLines1->getLine(1)->addTileToBack(tile2);
+    patternLines2->getLine(4)->addTileToBack(tile3);
     // patternLines1->getLine(1)->addTileToBack(tile3);
     // patternLines1->getLine(1)->addTileToBack(tile4);
     // patternLines1->getLine(1)->addTileToBack(tile5);
@@ -48,18 +50,19 @@ int main(int argc, char **argv)
     std::cout << "patternLine's line2: " << patternLines1->getLine(1)->getTilesAsString() << std::endl;
     std::cout << "patternLine's line3: " << patternLines1->getLine(2)->getTilesAsString() << std::endl;
     std::cout << "patternLine's line4: " << patternLines1->getLine(3)->getTilesAsString() << std::endl;
-    std::cout << "patternLine's line5: " << patternLines1->getLine(4)->getTilesAsString() << std::endl;
+    std::cout << "patternLine's line5: " << patternLines2->getLine(4)->getTilesAsString() << std::endl;
     // for (int i = 0; i < line1->size(); i++) {
     //     if (patternLines1->getLine(1)->hasTile(i)) {
 
     //     }
     // }
+
     patternLines1->getLine(2)->addTileToBack(patternLines1->getLine(1)->removeTile(0));
     std::cout << "patternLine's line1: " << patternLines1->getLine(0)->getTilesAsString() << std::endl;
     std::cout << "patternLine's line2: " << patternLines1->getLine(1)->getTilesAsString() << std::endl;
-    std::cout << "patternLine's line2: " << patternLines1->getLine(2)->getTilesAsString() << std::endl;
+    std::cout << "patternLine's line3: " << patternLines1->getLine(2)->getTilesAsString() << std::endl;
     std::cout << "patternLine's line4: " << patternLines1->getLine(3)->getTilesAsString() << std::endl;
-    std::cout << "patternLine's line5: " << patternLines1->getLine(4)->getTilesAsString() << std::endl;
+    std::cout << "patternLine's line5: " << patternLines2->getLine(4)->getTilesAsString() << std::endl;
 
     Lid *lid = new Lid();
     Lid *lid2 = new Lid();
@@ -82,6 +85,6 @@ int main(int argc, char **argv)
     
     Bag *bag2 = new Bag();
     bag2->addTileToBack(tile4);
-    bag2->clearBag();
+    //bag2->clearBag();
     std::cout << "tilebag: " << bag2->getTilesAsString() << std::endl;
 }
