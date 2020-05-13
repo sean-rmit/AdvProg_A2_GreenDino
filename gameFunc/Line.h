@@ -19,6 +19,7 @@ public:
 
     char getTileColour(int index);
     bool hasTile(int index);
+    bool isFull();
     tilePtr removeTile(int index);
     std::string getTilesAsString();
     
@@ -26,6 +27,7 @@ private:
     tilePtr* line;
     int array_length; //size of the array of line
     int numTiles; // number of tiles in array of line
+    
 };
 
 typedef Line* linePtr;

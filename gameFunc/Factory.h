@@ -1,18 +1,14 @@
 #ifndef GameFactory
 #define GameFactory
 
+#include "Line.h"
+#include "TileBag.h"
 #include <string>
 #include <vector>
-
-#include "Centre.h"
-#include "Tiles.h"
-#include "TileBag.h"
-#include "Player.h"
-
 #define FACTORY_SIZE 4
 
 class Factory {
-    public:
+public:
 
     Factory();
     ~Factory();
@@ -23,21 +19,13 @@ class Factory {
     // returns current size of factory
     int size();
 
-    // adds tiles to factory
-    void addTile(tilePtr tileP);
-
-    tilePtr getTile(int index);
-
-    // removes tiles from a factory to player board and centre
-    void playerTakesTiles(char c, Player *player, Centre *centre, int patternLineIndex);
-
-    // removes all tiles from factories
-    void clear();
+    // returns the factory tiles array pointer
+    linePtr getLine();
 
     // load factories with randomised tile selection
     void loadFactory(Bag *bag);
 
-    private:
+private:
 
     Line *factoryTiles;
 
