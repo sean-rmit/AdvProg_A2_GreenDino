@@ -71,15 +71,6 @@ bool Line::hasTile(int index) {
     }
 }
 
-bool Line::isFull() {
-    if (numTiles == array_length) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 tilePtr Line::removeTile(int index) {
     if (index >= 0 && index < array_length) {
         if (line[index] != nullptr) {

@@ -3,7 +3,6 @@
 Mosaic::Mosaic() {
     playerWall = new Wall();
     playerPatternLines = new PatternLines();
-    playerBrokenTiles = new BrokenTiles();
 }
 
 Mosaic::~Mosaic() {
@@ -11,22 +10,14 @@ Mosaic::~Mosaic() {
     delete playerPatternLines;
 }
 
-wallPtr Mosaic::getPlayerWall() {
-    return playerWall;
+Wall Mosaic::getPlayerWall() {
+    return *playerWall;
 }
 
-patternLinesPtr Mosaic::getPlayerPatternLines() {
-    return playerPatternLines;
-}
-
-brokenTilesPtr Mosaic::getPlayerBrokenTiles() {
-    return playerBrokenTiles;
+PatternLines Mosaic::getPlayerPatternLines() {
+    return *playerPatternLines;
 }
 
 void Mosaic::putTileToPatternLine(tilePtr tile, int patternLineIndex) {
-    playerPatternLines->getLine(patternLineIndex)->addTileToBack(tile);
-}
-
-void Mosaic::putTileToBrokenTiles(tilePtr tile) {
-    playerBrokenTiles->getLine()->addTileToBack(tile);
+    *playerPatternLines->getLine(patternLineIndex)->addTileToBack(tile);
 }

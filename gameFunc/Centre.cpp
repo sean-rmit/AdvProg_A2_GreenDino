@@ -15,6 +15,7 @@ Centre::~Centre()
 
 int Centre::size()
 {
+    centreTiles.resize(1);
     return centreTiles.size();
 }
 
@@ -23,25 +24,20 @@ void Centre::addTile(tilePtr tileP)
     centreTiles.push_back(tileP);
 }
 
-char Centre::getTileColour(int index) {
-    return *centreTiles.at(index);
-}
+void Centre::removeTiles(int index)
+{
+    if (centreTiles.size() > 0 && index >= 0 && index < centreTiles.size())
+    {
+        for (int i = index; i < centreTiles.size() - 1; ++i)
+        {
+          centreTiles[i] = centreTiles[i + 1];
+        }
 
-tilePtr Centre::removeTile(int index) {
-    tilePtr tile = centreTiles.at(index);
-    centreTiles.erase(centreTiles.begin() + index);
-    return tile;
+        centreTiles.pop_back();
+    }
 }
 
 void Centre::clear()
 {
     centreTiles.clear();
-}
-
-std::string Centre::getTilesAsString() {
-    std::string allTilesAsString;
-    for (unsigned int i = 0; i < centreTiles.size(); i++) {
-        allTilesAsString += centreTiles.at(i);
-    }
-    return allTilesAsString;
 }

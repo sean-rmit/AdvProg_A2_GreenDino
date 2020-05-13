@@ -5,9 +5,6 @@
 #include "PatternLines.h"
 #include "BoxLid.h"
 
-#include <iostream>
-#include <fstream>
-
 #define WALL_LINES_NUM 5
 
 class Wall {
@@ -23,13 +20,13 @@ public:
 
     // get line object at given index
     linePtr getLine(int index);
-    void addTile(tilePtr tile, int lineIndex, Lid *lid);
+
+    void receiveTileFromPatternLine(tilePtr tile, int lineIndex, Lid *lid);
 
 private:
     linePtr *wallLines;
-    char fixedColourPattern[WALL_LINES_NUM][WALL_LINES_NUM];
+    linePtr *fixedColourPattern;
 };
 
-typedef Wall* wallPtr;
 
 #endif // MosaicWall

@@ -2,14 +2,8 @@
 #define TilesBag
 
 #include "Tiles.h"
-#include "Line.h"
-#include "LinkedList.h"
-
 #include <string>
-#include <vector>
-#include <random>
-
-#define TILEBAG_SIZE 100
+#include "LinkedList.h"
 
 class Bag {
 public:
@@ -24,16 +18,13 @@ public:
     unsigned int size();
 
     // add tile to back of the linked list of bag
-    void addTileToBack(char tile);
+    void addTileToBack(tilePtr tile);
 
     // remove the tile at the front of the linked list of bag
     tilePtr removeTileFront();
 
     // removes all tiles from the linked list of bag
     void clearBag();
-
-    // fill bag with tiles of random order, seed = 0 is assumed as no seed value given
-    void fillBagWithTiles(int seed);
 
     // print tiles contained in linked list of bag
     std::string getTilesAsString();

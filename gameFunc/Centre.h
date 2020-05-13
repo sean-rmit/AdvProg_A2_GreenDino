@@ -2,12 +2,11 @@
 #define FactoryCentre
 
 #include <vector>
-#include <string>
 
 #include "Tiles.h"
 
 class Centre {
-public:
+    public:
 
     Centre();
     ~Centre();
@@ -21,17 +20,13 @@ public:
     // adds tiles to factory
     void addTile(tilePtr tileP);
 
-    char getTileColour(int index);
-
     // removes tiles from a factory
-    tilePtr removeTile(int index);
+    void removeTiles(int index);
 
     // removes all tiles from factories
     void clear();
 
-    std::string getTilesAsString();
-
-private:
+    private:
 
     std::vector<tilePtr> centreTiles;
 

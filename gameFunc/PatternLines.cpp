@@ -42,3 +42,13 @@ linePtr PatternLines::getLine(int index)
     }
     return patternLines[index];
 }
+
+// void PatternLines::moveAllTilesToWall(Wall *wall, Lid *lid) {
+//     for (int i = 0; i < PATTERN_LINES_NUM; i++) {
+//         for (int i = 0; i < patternLines[i]->size(); i++) {
+//             if (patternLines[i]->hasTile(i)) {
+//                 wall->receiveTileFromPatternLine(patternLines[i]->removeTile(i), i, lid);
+//             }
+//         }
+//     }
+// }
