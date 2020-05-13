@@ -4,7 +4,7 @@
 
 class Node {
 public:
-   tilePtr tile;
+   char tile;
    Node* next;
 };
 

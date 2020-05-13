@@ -3,7 +3,7 @@
 
 #include "Wall.h"
 #include "PatternLines.h"
-#include "Line.h"
+#include "BrokenTiles.h"
 
 
 class Mosaic {
@@ -12,14 +12,18 @@ class Mosaic {
     Mosaic();
     ~Mosaic();
 
-    Wall getPlayerWall();
-    PatternLines getPlayerPatternLines();
+    wallPtr getPlayerWall();
+    patternLinesPtr getPlayerPatternLines();
+    brokenTilesPtr getPlayerBrokenTiles();
     void putTileToPatternLine(tilePtr tile, int patternLineIndex);
+    void putTileToBrokenTiles(tilePtr tile);
 
     private:
         Wall *playerWall;
         PatternLines *playerPatternLines;
+        BrokenTiles *playerBrokenTiles;
 };
 
+typedef Mosaic* mosaicPtr;
 
 #endif // PlayerMosaic

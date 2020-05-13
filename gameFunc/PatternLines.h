@@ -20,11 +20,10 @@ class PatternLines {
     // get line object at given index
     linePtr getLine(int index);
 
-    //void moveAllTilesToWall(Wall *wall, Lid *lid);
-
     private:
     linePtr *patternLines;
 };
 
+typedef PatternLines* patternLinesPtr;
 
 #endif // PlayerPatternLines

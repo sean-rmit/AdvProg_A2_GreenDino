@@ -9,6 +9,10 @@ BrokenTiles::~BrokenTiles() {
     delete brokenTiles;
 }
 
+linePtr BrokenTiles::getLine() {
+    return brokenTiles;
+}
+
 int BrokenTiles::getPenaltyPoints() {
     if (brokenTiles->getTilesNumber() == 0) {
         return NO_PENALTY;
