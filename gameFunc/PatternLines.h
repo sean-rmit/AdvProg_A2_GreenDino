@@ -9,7 +9,7 @@
 #define PATTERN_LINES_NUM 5
 
 class PatternLines {
-    public:
+public:
 
     PatternLines();
     ~PatternLines();
@@ -20,7 +20,7 @@ class PatternLines {
     // get line object at given index
     linePtr getLine(int index);
 
-    private:
+private:
     linePtr *patternLines;
 };
 

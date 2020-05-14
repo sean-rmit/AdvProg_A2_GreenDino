@@ -37,5 +37,6 @@ private:
 
 };
 
+typedef Centre* centrePtr;
 
 #endif // FactoryCentre

@@ -96,14 +96,16 @@ tilePtr Line::removeTile(int index) {
     }
 }
 
-std::string Line::getTilesAsString() {
+std::string Line::getTilesAsString(bool hasNoTile) {
     std::string allTilesAsString;
     for (int i = 0; i < array_length; i++) {
         if (line[i] != nullptr) {
             allTilesAsString += line[i];
         }
         else {
-            allTilesAsString += NOTILE;
+            if (hasNoTile) {
+                allTilesAsString += NOTILE;
+            }
         }
     }
     return allTilesAsString;

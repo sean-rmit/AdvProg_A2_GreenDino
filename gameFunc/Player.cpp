@@ -2,12 +2,17 @@
 
 #include <iostream>
 
-Player::Player() {
+Player::Player(std::string name) {
+    this->playerName = name;
     playerMosaic = new Mosaic();
 }
 
 Player::~Player() {
     delete playerMosaic;
+}
+
+std::string Player::getPlayerName() {
+    return playerName;
 }
 
 mosaicPtr Player::getPlayerMosaic() {
@@ -50,13 +55,16 @@ void Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
 void Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineIndex, Lid *lid) {
     // int centreSize = centre->size();
     for (int i = 0; i < centre->size(); i++) {
-        if (centre->getTileColour(i) == colour) {
-            //check if the player's pattern line still has space to put tiles
-            if (!playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->isFull()) {
+        // find the tiles from the centre according to the colour the player wants including the firstplayer token
+        if (centre->getTileColour(i) == colour || centre->getTileColour(i) == FIRSTPLAYER) {
+            //check if the player's pattern line still has space to put tiles and make sure not to add
+            //firstplayer token into patternline
+            if (!playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->isFull() && centre->getTileColour(i) != FIRSTPLAYER) {
                 playerMosaic->putTileToPatternLine(centre->removeTile(i), patternLineIndex);
                 i--;
             }
-            //else if the pattern line is full, add it to player's broken tiles
+            //else if the pattern line is full or the tile is the firstplayer token, 
+            //add it to player's broken tiles
             else {
                 // check if the player's broken tiles is full
                 if (!playerMosaic->getPlayerBrokenTiles()->getLine()->isFull()) {
@@ -81,5 +89,9 @@ void Player::moveTilesFromPatternLineToWall(Lid *lid) {
             }
         }
     }
+}
+
+void Player::moveTilesFromBrokenTilesToLid(Lid *lid, Centre *centre) {
+    playerMosaic->getPlayerBrokenTiles()->moveAllTilesToLid(lid, centre);
 }
 

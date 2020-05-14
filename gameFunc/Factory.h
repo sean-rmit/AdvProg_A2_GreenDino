@@ -31,6 +31,7 @@ private:
 
 };
 
+typedef Factory* factoryPtr;
 
 
 #endif // GameFactory

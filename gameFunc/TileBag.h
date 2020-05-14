@@ -42,5 +42,6 @@ private:
     LinkedList* bag;
 };
 
+typedef Bag* bagPtr;
 
 #endif // TilesBag

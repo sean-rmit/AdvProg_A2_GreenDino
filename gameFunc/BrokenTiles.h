@@ -3,6 +3,7 @@
 
 #include "Line.h"
 #include "BoxLid.h"
+#include "Centre.h"
 
 #define MAX_BROKEN_TILES 7
 #define NO_PENALTY 0
@@ -21,7 +22,7 @@ public:
 
     linePtr getLine();
     int getPenaltyPoints();
-    void moveAllTilesToLid(Lid *lid);
+    void moveAllTilesToLid(Lid *lid, Centre *centre);
 
 private:
    Line *brokenTiles;

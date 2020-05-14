@@ -30,7 +30,7 @@ linePtr PatternLines::getLine(int index)
 {
     try
     {
-        if (index < 0 || index > 4)
+        if (index < 0 || index > PATTERN_LINES_NUM-1)
         {
             throw "Out of Bounds Exception!";
         }

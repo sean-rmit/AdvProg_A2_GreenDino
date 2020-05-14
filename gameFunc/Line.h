@@ -21,7 +21,7 @@ public:
     bool hasTile(int index);
     bool isFull();
     tilePtr removeTile(int index);
-    std::string getTilesAsString();
+    std::string getTilesAsString(bool hasNoTile);
     
 private:
     tilePtr* line;
