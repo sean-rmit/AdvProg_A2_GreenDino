@@ -1,198 +1,106 @@
 #include<fstream>
 #include<iostream>
 
-void findData(std::string line);
+void getData(std::string line);
+void splitData(std::string data);
 
 //Read from file
-int main() {
+int LoadSavedFile() {
     //Reading file
 
-    // if (!savedFile.eof()) {
-    //     std::string line;
-    //     getline(savedFile, line);
-    //     if (line contains "factory1") {
-    //         String[] tokens = line.split(" ")
-    //         for each (tokens[2]) {
-    //             char array = token[2];
-    //             factory1->addTile(array[i]);
-    //         }
-    //     }
-    // }
-
     std::ifstream savedFile("saveFile.txt");
-    std::string file;
-    std::string text;
-    // int l = 0;
-    // int fl = 0;
-
     while(!savedFile.eof()) {
         std::string line;
         for (int i = 0; getline(savedFile, line) && i < 35; i++) {
             int j;
-            // int k;
 
             //BAG
             if (i == 0) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (k = 0; k < tll; k++) {
-                //     std::cout << data[k] << std::endl;
-                // }
+                getData(line);
             }
 
             //LID
             if (i == 1) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (k = 0; k < tll; k++) {
-                //     std::cout << data[k] << std::endl;
-                // }
+                getData(line);
             }
 
             //FACTORIES ----------------------------
             //factory centre
             if (i == 2) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (k = 0; k < tll; k++) {
-                //     std::cout << data[k] << std::endl;
-                // }
+                getData(line);
             }
             
             //factory 1-5
             for (j = 3; j <= 7; j++) {
                 if (i == j) {
-                    findData(line);
-
-                    // int tll = data.length();
-                    // for (k = 0; k < tll; j++) {
-                    //     std::cout << data[j] << std::endl;
-                    // }
+                    getData(line);
                 }
             }
 
             //PLAYER_1 -------------------------------
             //name
             if (i == 8) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (j = 0; j < tll; j++) {
-                //     std::cout << data[j] << std::endl;
-                // }
+                getData(line);
             }
 
             //score
             if (i == 9) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (j = 0; j < tll; j++) {
-                //     std::cout << data[j] << std::endl;
-                // }
+                getData(line);
             }
 
             //patternLine1-5
             for (j = 10; j <= 14; j++) {
                 if (i == j) {
-                    findData(line);
-
-                    // int tll = data.length();
-                    // for (j = 0; j < tll; j++) {
-                    //     std::cout << data[j] << std::endl;
-                    // }
+                    getData(line);
                 }
             }
             
             //floorLine
             if (i == 15) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (j = 0; j < tll; j++) {
-                //     std::cout << data[j] << std::endl;
-                // }
+                getData(line);
             }
 
             //Mosaic1-5
             for (j = 16; j <= 20; j++) {
                 if (i == j) {
-                    findData(line);
-
-                    // int tll = data.length();
-                    // for (j = 0; j < tll; j++) {
-                    //     std::cout << data[j] << std::endl;
-                    // }
+                    getData(line);
                 }
             }
             
             //PLAYER_2 --------------------------------
             //P2name
             if (i == 21) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (j = 0; j < tll; j++) {
-                //     std::cout << data[j] << std::endl;
-                // }
+                getData(line);
             }
 
             //P2score
             if (i == 22) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (j = 0; j < tll; j++) {
-                //     std::cout << data[j] << std::endl;
-                // }
+                getData(line);
             }
 
             //P2patternLine1-5
             for (j = 23; j <= 27; j++) {
                 if (i == j) {
-                    findData(line);
-
-                    // int tll = data.length();
-                    // for (j = 0; j < tll; j++) {
-                    //     std::cout << data[j] << std::endl;
-                    // }
+                    getData(line);
                 }
             }
 
             //P2floorLine
             if (i == 28) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (j = 0; j < tll; j++) {
-                //     std::cout << data[j] << std::endl;
-                // }
+                getData(line);
             }
             
             //P2Mosaic_0
             for (j = 29; j <= 33; j++) {
                 if (i == j) {
-                    findData(line);
-
-                    // int tll = data.length();
-                    // for (j = 0; j < tll; j++) {
-                    //     std::cout << data[j] << std::endl;
-                    // }
+                    getData(line);
                 }
             }
 
             //NUMBER OF PLAYERS------------------------
             //currentPlayers
             if (i == 34) {
-                findData(line);
-
-                // int tll = data.length();
-                // for (j = 0; j < tll; j++) {
-                //     std::cout << data[j] << std::endl;
-                // }
+                getData(line);
             }
         }
     
@@ -200,7 +108,7 @@ int main() {
 
 }
 
-void findData(std::string line) {
+void getData(std::string line) {
     int ll;
     std::string data;
     char e = '='; 
@@ -212,5 +120,15 @@ void findData(std::string line) {
     ll = line.length();
 
     data = line.substr(el, ll-el);
-    std::cout << data << std::endl;
+    //std::cout << data << std::endl;
+
+    splitData(data);
+}
+
+void splitData(std::string data) {
+    int k;
+    int tll = data.length();
+    for (k = 0; k < tll; k++) {
+        std::cout << data[k] << std::endl;
+    }
 }
