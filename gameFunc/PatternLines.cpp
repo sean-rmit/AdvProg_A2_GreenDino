@@ -30,7 +30,7 @@ linePtr PatternLines::getLine(int index)
 {
     try
     {
-        if (index < 0 || index > 4)
+        if (index < 0 || index > PATTERN_LINES_NUM-1)
         {
             throw "Out of Bounds Exception!";
         }
@@ -42,13 +42,3 @@ linePtr PatternLines::getLine(int index)
     }
     return patternLines[index];
 }
-
-// void PatternLines::moveAllTilesToWall(Wall *wall, Lid *lid) {
-//     for (int i = 0; i < PATTERN_LINES_NUM; i++) {
-//         for (int i = 0; i < patternLines[i]->size(); i++) {
-//             if (patternLines[i]->hasTile(i)) {
-//                 wall->receiveTileFromPatternLine(patternLines[i]->removeTile(i), i, lid);
-//             }
-//         }
-//     }
-// }

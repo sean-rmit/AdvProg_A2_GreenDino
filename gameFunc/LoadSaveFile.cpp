@@ -5,7 +5,7 @@ void getData(std::string line);
 void splitData(std::string data);
 
 //Read from file
-int LoadSavedFile() {
+int main() {
     //Reading file
 
     std::ifstream savedFile("saveFile.txt");

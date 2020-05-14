@@ -9,7 +9,7 @@
 #define PATTERN_LINES_NUM 5
 
 class PatternLines {
-    public:
+public:
 
     PatternLines();
     ~PatternLines();
@@ -20,11 +20,10 @@ class PatternLines {
     // get line object at given index
     linePtr getLine(int index);
 
-    //void moveAllTilesToWall(Wall *wall, Lid *lid);
-
-    private:
+private:
     linePtr *patternLines;
 };
 
+typedef PatternLines* patternLinesPtr;
 
 #endif // PlayerPatternLines

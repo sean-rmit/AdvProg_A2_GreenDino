@@ -71,6 +71,15 @@ bool Line::hasTile(int index) {
     }
 }
 
+bool Line::isFull() {
+    if (numTiles == array_length) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 tilePtr Line::removeTile(int index) {
     if (index >= 0 && index < array_length) {
         if (line[index] != nullptr) {
@@ -87,14 +96,16 @@ tilePtr Line::removeTile(int index) {
     }
 }
 
-std::string Line::getTilesAsString() {
+std::string Line::getTilesAsString(bool hasNoTile) {
     std::string allTilesAsString;
     for (int i = 0; i < array_length; i++) {
         if (line[i] != nullptr) {
             allTilesAsString += line[i];
         }
         else {
-            allTilesAsString += NOTILE;
+            if (hasNoTile) {
+                allTilesAsString += NOTILE;
+            }
         }
     }
     return allTilesAsString;

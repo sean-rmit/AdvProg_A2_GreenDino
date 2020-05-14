@@ -29,7 +29,7 @@ unsigned int Lid::size() {
 
 void Lid::addTileToBack(tilePtr tile) {
     Node* newTile = new Node();
-    newTile->tile = tile;
+    newTile->tile = *tile;
     newTile->next = nullptr;
 
     if (lid->head == nullptr) {
@@ -41,13 +41,16 @@ void Lid::addTileToBack(tilePtr tile) {
         }
         current->next = newTile;
     }
+    delete tile;
 }
 
-void Lid::removeTileFront() {
+char Lid::removeTileFront() {
     if (lid->head != nullptr) {
         Node* toDelete = lid->head;
+        char tile = toDelete->tile;
         lid->head = lid->head->next;
         delete toDelete;
+        return tile;
     } else {
         throw std::logic_error("Deleting on empty list");
     }

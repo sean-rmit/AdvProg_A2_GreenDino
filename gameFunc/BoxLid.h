@@ -32,7 +32,7 @@ public:
     void addTileToBack(tilePtr tile);
 
     // remove the tile at the front of the linked list of lid
-    void removeTileFront();
+    char removeTileFront();
 
     // removes all tiles from the linked list of lid
     void clearLid();
@@ -44,5 +44,6 @@ private:
     LinkedList* lid;
 };
 
+typedef Lid* lidPtr;
 
 #endif // BoxLid
