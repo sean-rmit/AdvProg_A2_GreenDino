@@ -29,7 +29,7 @@ unsigned int Lid::size() {
 
 void Lid::addTileToBack(tilePtr tile) {
     Node* newTile = new Node();
-    newTile->tile = tile;
+    newTile->tile = *tile;
     newTile->next = nullptr;
 
     if (lid->head == nullptr) {

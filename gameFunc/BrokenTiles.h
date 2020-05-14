@@ -19,11 +19,14 @@ public:
     BrokenTiles();
     ~BrokenTiles();
 
+    linePtr getLine();
     int getPenaltyPoints();
     void moveAllTilesToLid(Lid *lid);
 
 private:
    Line *brokenTiles;
 };
+
+typedef BrokenTiles* brokenTilesPtr;
 
 #endif 
