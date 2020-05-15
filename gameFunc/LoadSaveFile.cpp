@@ -131,4 +131,8 @@ void splitData(std::string data) {
     for (k = 0; k < tll; k++) {
         std::cout << data[k] << std::endl;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 99b65f44802179d87e10f33b0571dcb2fdc2ecb0

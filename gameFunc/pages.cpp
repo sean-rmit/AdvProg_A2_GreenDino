@@ -42,9 +42,21 @@ void creditsPage() {
 
     //toolbar
     std::cout << "< enter B to go back to Main menu" << std::endl;
+
+    bool creditsPageRunning = true;
+    while (creditsPageRunning) {
+        char input;
+        std::cin >> input;
+        if (input == 'B' || input == 'b') {
+            creditsPageRunning = false;
+        }
+        else {
+            std::cout << "No such available input! Please try again." << std::endl;
+        }
+    }
 }
 
-void mainMenuPage() {
+void mainMenuPage(int seed) {
     //line 1
     printString("=", PAGEWIDTH);
     std::cout << std::endl;
@@ -83,9 +95,30 @@ void mainMenuPage() {
     std::cout << std::endl;
     std::cout << std::endl;
 
+    bool mainMenuRunning = true;
+    while (mainMenuRunning) {
+        char input;
+        std::cin >> input;
+        if (input == 'C' || input == 'c') {
+            creditsPage();
+        }
+        else if (input == 'Q' || input == 'q') {
+            mainMenuRunning = false;
+        }
+        else if (input == 'N' || input == 'n') {
+            newGamePage(seed);
+            mainMenuRunning = false;
+        }
+        else if (input == 'L' || input == 'l') {
+            loadGamePage();
+        }
+        else {
+            std::cout << "No such available input! Please try again." << std::endl;
+        }
+    }
 }
 
-void newGamePage() {
+void newGamePage(int seed) {
     //line 1
     printString("=", PAGEWIDTH);
     std::cout << std::endl;
@@ -110,13 +143,16 @@ void newGamePage() {
     std::cout << std::endl;
 
     // game initialised
-    Game *game = new Game(playerName1, playerName2);
-    bool game = true;
+    Game *game = new Game(playerName1, playerName2, seed);
+    bool gameOngoing = true;
     std::cout << "Let’s Play!" << std::endl;
     std::cout << std::endl;
-    std::cout << "=== Start Round ===" << std::endl;
     int roundCounter = 1; // odd = player 1 turn, even = player 2 turn
-    while(game) {
+    while(gameOngoing) {
+        // initialise the round (aka load factories with tiles)
+        std::cout << "=== Start Round ===" << std::endl;
+        game->prepareNewRound();
+
         std::cout << "TURN FOR PLAYER: ";
         if (roundCounter % 2 == 1) {
             std::cout << playerName1 << std::endl;
@@ -137,17 +173,36 @@ void newGamePage() {
         while (!validMove) {
             std::string playerMove;
             std::cin >> playerMove;
-            if (roundCounter % 2 == 1) {
-                validMove = game->playerMakesMove(1, playerMove);
+            // TODO: save game function
+            if (playerMove == "save") {
+                validMove = true;
+                gameOngoing = false;
+            }
+            else if (playerMove == "quit") {
+                validMove = true;
+                gameOngoing = false;
             }
             else {
-                validMove = game->playerMakesMove(2, playerMove);
+                if (roundCounter % 2 == 1) {
+                    validMove = game->playerMakesMove(1, playerMove);
+                }
+                else {
+                    validMove = game->playerMakesMove(2, playerMove);
+                }
+                std::cout << "Turn Successful." << std::endl;
             }
         }
-        std::cout << "Turn Successful." << std::endl;
-        roundCounter++;
         
+        roundCounter++;
+        // check if the round has ended (aka factories and centre are all empty)
+        if(game->hasRoundEnded()) {
+            game->finaliseRound();
+        }
+        if (game->hasGameEnded()) {
+            gameOngoing = false;
+        }
     }
+    std::cout << "=== GAME OVER ===" << std::endl;
 
 }
 

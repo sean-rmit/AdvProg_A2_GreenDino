@@ -4,6 +4,7 @@
 
 Player::Player(std::string name) {
     this->playerName = name;
+    this->playerScore = 0;
     playerMosaic = new Mosaic();
 }
 
@@ -17,6 +18,10 @@ std::string Player::getPlayerName() {
 
 mosaicPtr Player::getPlayerMosaic() {
     return playerMosaic;
+}
+
+void Player::addToPlayerScore(int score) {
+    playerScore += score;
 }
 
 void Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre, int patternLineIndex, Lid *lid) {

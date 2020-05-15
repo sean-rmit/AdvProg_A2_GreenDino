@@ -6,13 +6,14 @@
 #include <sstream>
 #include <cstring>
 
-Game::Game(std::string playerName1, std::string playerName2) {
+Game::Game(std::string playerName1, std::string playerName2, int seed) {
     factories = new Factories();
     centre = new Centre;
     player1 = new Player(playerName1);
     player2 = new Player(playerName2);
     lid = new Lid();
     bag = new Bag();
+    bag->fillBagWithTiles(seed);
 }
 Game::~Game() {
     delete factories;
@@ -35,6 +36,13 @@ void Game::finaliseRound() {
 }
 
 void Game::prepareNewRound() {
+    // refill bag with tiles from lid if insufficient tiles
+    if (bag->size() < 25) {
+        int lidSize = lid->size();
+        for (int i = 0; i < lidSize; i++) {
+            bag->addTileToBack(lid->removeTileFront());
+        }
+    }
     for (int i = 0; i < FACTORIES_NUM; i++) {
         factories->getFactory(i)->loadFactory(bag);
     }
@@ -97,7 +105,7 @@ bool Game::playerMakesMove(int playerNum, std::string move) {
     }
 
     // player move
-    if (factoryNum = 0) {
+    if (factoryNum == 0) {
         if (playerNum == 1) {
             player1->takeTilesFromCentre(tileColour, centre, patternlineIndex, lid);
         }
@@ -126,6 +134,37 @@ bool Game::playerMakesMove(int playerNum, std::string move) {
         }
     }
     return false;
+}
+
+bool Game::hasRoundEnded() {
+    bool isEverythingEmpty = true;
+    // check if centre is empty
+    if (centre->size() != 0) {
+        isEverythingEmpty = false;
+    }
+    // check if each factory is empty
+    for (int i = 0; i < FACTORIES_NUM; i++) {
+        if (factories->getFactory(i)->getLine()->getTilesNumber() != 0) {
+            isEverythingEmpty = false;
+        }
+    }
+    return isEverythingEmpty = true;
+}
+
+bool Game::hasGameEnded() {
+    for (int i = 0; i < WALL_LINES_NUM; i++) {
+        if (player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->isFull()){
+            return true;
+        }
+        if (player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->isFull()){
+            return true;
+        }
+    }
+    return false;
+}
+
+void Game::finaliseGame() {
+
 }
 
 // getters and setters

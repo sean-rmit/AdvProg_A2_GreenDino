@@ -14,7 +14,7 @@ void printFactories(Centre *centre, Factories *factories) {
     std::cout << "Factories:" << std::endl;
     std::cout << "0: " << centre->getTilesAsString()<< std::endl;
     for (int i = 0; i < FACTORIES_NUM; i++) {
-        std::cout << i+1 <<": " << factories->getFactory(i)->getLine()->getTilesAsString() << std::endl;
+        std::cout << i+1 <<": " << factories->getFactory(i)->getLine()->getTilesAsString(false) << std::endl;
     }
 }
 

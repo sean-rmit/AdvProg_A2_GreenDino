@@ -13,7 +13,7 @@ class Game {
 public:
 
     Game();
-    Game(std::string playerName1, std::string playerName2);
+    Game(std::string playerName1, std::string playerName2, int seed);
     ~Game();
 
     // copy constructor
@@ -22,6 +22,9 @@ public:
     void finaliseRound();
     void prepareNewRound();
     bool playerMakesMove(int playerNum, std::string move);
+    bool hasRoundEnded();
+    bool hasGameEnded();
+    void finaliseGame();
 
     factoriesPtr getFactories();
     centrePtr getCentre();

@@ -6,9 +6,9 @@
 
 #define PAGEWIDTH       80
 
-void mainMenuPage();
+void mainMenuPage(int seed);
 void creditsPage();
-void newGamePage();
+void newGamePage(int seed);
 void loadGamePage();
 
 

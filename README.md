@@ -9,14 +9,19 @@ Group Members:
 - Amy Nguyen
 - Sean Tan
 
-Week 8 Task (Ongoing):
-Choice of where to use linked list, vector & array
-- Tiles in TileBag: linkedlist (ize can be allocated dynamically from a saved game file)
-- Tiles in LidBox: linked list (only receives tiles during the game and delete the entire linked list at the end of the game)
-- Tiles in Centre: vector (tiles would need to be accessed from any position the list and resized quickly)
-- Tiles in PatternLine: array (fixed length of arrays needed, namely of size 1,2,3,4,5)
-- Tiles in Wall: array (fixed length of arrays needed, namely of size 5,5,5,5,5)
-- Tiles in Factory: vector (tiles would need to be accessed from any position the list and resized quickly)
-- Tiles in PenaltyLine: array (fixed length)
-(add more if u can think of any)
+Bugs discovered:
+- factory tiles not printing properly, try changing all tileptr into chars
+
+Features that needs implementation:
+- program needs to take in an argument which is the seed. (Example: ./azul 10) < 10 being the seed value
+- mosaic board not printing properly, need to add space after the patternline to straighthen the divider
+- 1: . || .....
+- 2: .. || .....
+- 3: ... || .....
+- 4: .... || .....
+- 5: ..... || .....
+- broken: .......
+
+- saved game function needs to be integrated into saveGamePage() in pages.cpp
+- scoring system (sean will do this)
 

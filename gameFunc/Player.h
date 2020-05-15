@@ -14,6 +14,8 @@ public:
 
     std::string getPlayerName();
     mosaicPtr getPlayerMosaic();
+    // add the score to player's total score, negative parameter means minus score
+    void addToPlayerScore(int score);
     void takeTilesFromFactory(Factory *factory, char colour, Centre *centre, int patternLineIndex, Lid *lid);
     void takeTilesFromCentre(char colour, Centre *centre, int patternLineIndex, Lid *lid);
     void moveTilesFromPatternLineToWall(Lid *lid);
@@ -21,6 +23,7 @@ public:
 
 private:
     std::string playerName;
+    int playerScore;
     Mosaic *playerMosaic;
 };
 

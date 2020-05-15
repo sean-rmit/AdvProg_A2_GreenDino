@@ -52,7 +52,7 @@ char Lid::removeTileFront() {
         delete toDelete;
         return tile;
     } else {
-        throw std::logic_error("Deleting on empty list");
+        throw std::logic_error("Deleting on empty boxlid");
     }
 }
 
