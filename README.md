@@ -13,7 +13,7 @@ Bugs discovered:
 - factory tiles not printing properly, try changing all tileptr into chars
 
 Features that needs implementation:
-- program needs to take in an argument which is the seed. Example: ./azul <seed value>
+- program needs to take in an argument which is the seed. (Example: ./azul 10) < 10 being the seed value
 - mosaic board not printing properly, need to add space after the patternline to straighthen the divider
 - 1: . || .....
 - 2: .. || .....
