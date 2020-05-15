@@ -6,13 +6,14 @@
 #include <sstream>
 #include <cstring>
 
-Game::Game(std::string playerName1, std::string playerName2) {
+Game::Game(std::string playerName1, std::string playerName2, int seed) {
     factories = new Factories();
     centre = new Centre;
     player1 = new Player(playerName1);
     player2 = new Player(playerName2);
     lid = new Lid();
     bag = new Bag();
+    bag->fillBagWithTiles(seed);
 }
 Game::~Game() {
     delete factories;
@@ -104,7 +105,7 @@ bool Game::playerMakesMove(int playerNum, std::string move) {
     }
 
     // player move
-    if (factoryNum = 0) {
+    if (factoryNum == 0) {
         if (playerNum == 1) {
             player1->takeTilesFromCentre(tileColour, centre, patternlineIndex, lid);
         }
@@ -160,6 +161,10 @@ bool Game::hasGameEnded() {
         }
     }
     return false;
+}
+
+void Game::finaliseGame() {
+
 }
 
 // getters and setters

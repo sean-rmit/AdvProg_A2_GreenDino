@@ -50,7 +50,7 @@ tilePtr Bag::removeTileFront() {
         delete toRemove;
         return tile;
     } else {
-        throw std::logic_error("Deleting on empty list");
+        throw std::logic_error("Deleting on empty tilebag");
     }
 }
 
@@ -104,13 +104,6 @@ void Bag::fillBagWithTiles(int seed) {
         // tempVector.push_back(tile);
         tempVector.push_back(BLACK);
     }
-
-    std::cout << "DEBUG" << std::endl;
-    for (std::vector<char>::const_iterator i = tempVector.begin(); i != tempVector.end(); ++i) {
-        
-        std::cout << *i;
-    }
-    std::cout << std::endl;
 
     /* 
      *Shuffling TileBag by inserting from random tempVector positions into the TileBag
