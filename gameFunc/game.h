@@ -22,6 +22,8 @@ public:
     void finaliseRound();
     void prepareNewRound();
     bool playerMakesMove(int playerNum, std::string move);
+    bool hasRoundEnded();
+    bool hasGameEnded();
 
     factoriesPtr getFactories();
     centrePtr getCentre();

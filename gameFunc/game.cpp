@@ -35,6 +35,13 @@ void Game::finaliseRound() {
 }
 
 void Game::prepareNewRound() {
+    // refill bag with tiles from lid if insufficient tiles
+    if (bag->size() < 25) {
+        int lidSize = lid->size();
+        for (int i = 0; i < lidSize; i++) {
+            bag->addTileToBack(lid->removeTileFront());
+        }
+    }
     for (int i = 0; i < FACTORIES_NUM; i++) {
         factories->getFactory(i)->loadFactory(bag);
     }
@@ -123,6 +130,33 @@ bool Game::playerMakesMove(int playerNum, std::string move) {
             std::cout << "Invalid input" << std::endl;
             std::cout << "DEBUG: playerNum wrong!" << std::endl;
             return false;
+        }
+    }
+    return false;
+}
+
+bool Game::hasRoundEnded() {
+    bool isEverythingEmpty = true;
+    // check if centre is empty
+    if (centre->size() != 0) {
+        isEverythingEmpty = false;
+    }
+    // check if each factory is empty
+    for (int i = 0; i < FACTORIES_NUM; i++) {
+        if (factories->getFactory(i)->getLine()->getTilesNumber() != 0) {
+            isEverythingEmpty = false;
+        }
+    }
+    return isEverythingEmpty = true;
+}
+
+bool Game::hasGameEnded() {
+    for (int i = 0; i < WALL_LINES_NUM; i++) {
+        if (player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->isFull()){
+            return true;
+        }
+        if (player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->isFull()){
+            return true;
         }
     }
     return false;

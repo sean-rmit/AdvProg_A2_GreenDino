@@ -111,12 +111,15 @@ void newGamePage() {
 
     // game initialised
     Game *game = new Game(playerName1, playerName2);
-    bool game = true;
+    bool gameOngoing = true;
     std::cout << "Let’s Play!" << std::endl;
     std::cout << std::endl;
-    std::cout << "=== Start Round ===" << std::endl;
     int roundCounter = 1; // odd = player 1 turn, even = player 2 turn
-    while(game) {
+    while(gameOngoing) {
+        // initialise the round (aka load factories with tiles)
+        std::cout << "=== Start Round ===" << std::endl;
+        game->prepareNewRound();
+
         std::cout << "TURN FOR PLAYER: ";
         if (roundCounter % 2 == 1) {
             std::cout << playerName1 << std::endl;
@@ -146,8 +149,15 @@ void newGamePage() {
         }
         std::cout << "Turn Successful." << std::endl;
         roundCounter++;
-        
+        // check if the round has ended (aka factories and centre are all empty)
+        if(game->hasRoundEnded()) {
+            game->finaliseRound();
+        }
+        if (game->hasGameEnded()) {
+            gameOngoing = false;
+        }
     }
+    std::cout << "=== GAME OVER ===" << std::endl;
 
 }
 
