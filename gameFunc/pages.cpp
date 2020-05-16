@@ -206,7 +206,27 @@ void newGamePage(int seed) {
 
 }
 
-void loadGamePage() {
+void loadGamePage()
+{
+    //line 1
+    printString("=", PAGEWIDTH);
+    std::cout << std::endl;
 
+    //line 2
+    printString(" ", PAGEWIDTH / 2 - 4);
+    std::cout << "LOAD GAME";
+    std::cout << std::endl;
+
+    //line 3
+    printString("=", PAGEWIDTH);
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    // User input for filename
+    std::cout << "Enter the filename you wish to load the game from:" << std::endl;
+    std::string filename;
+    std::cin >> filename;
+
+    LoadSave *load = new LoadSave();
+    load->loadFile(filename);
 }
-

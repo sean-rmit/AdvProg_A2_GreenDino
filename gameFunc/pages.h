@@ -3,6 +3,7 @@
 
 #include "utils.h"
 #include "game.h"
+#include "LoadSaveFile.h"
 
 #define PAGEWIDTH       80
 
