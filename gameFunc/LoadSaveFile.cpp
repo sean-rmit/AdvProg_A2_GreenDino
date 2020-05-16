@@ -5,7 +5,7 @@ void getData(std::string line, std::string& data);
 // void splitData(std::string data);
 
 //Read from file
-int loadSaveFile() {
+void loadSaveFile() {
     //Reading file
     std::ifstream savedFile("saveFile.txt");
     while(!savedFile.eof()) {
@@ -211,7 +211,6 @@ void getData(std::string line, std::string& data) {
     data = line.substr(el, ll-el);
     //std::cout << data << std::endl;
 
-    //splitData(data);
 }
 
 // void splitData(std::string data) {
