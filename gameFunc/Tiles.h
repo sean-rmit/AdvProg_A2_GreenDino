@@ -8,6 +8,7 @@
 #define LIGHTBLUE       'L'
 #define BLACK           'U'
 #define NOTILE          '.'
+#define SPACER          ' '
 
 #define RED_TILES_NUM       20
 #define YELLOW_TILES_NUM    20
