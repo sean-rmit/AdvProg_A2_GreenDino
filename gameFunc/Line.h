@@ -25,7 +25,6 @@ public:
     
 private:
     tilePtr* line;
-    tilePtr* space;
     int array_length; //size of the array of line
     int numTiles; // number of tiles in array of line
     
