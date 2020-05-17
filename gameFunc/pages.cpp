@@ -201,7 +201,7 @@ void newGamePage(int seed)
                 std::string filename;
                 std::cin >> filename;
                 LoadSave *save = new LoadSave();
-                save->saveFile(filename, playerName1, playerName2, seed);
+                save->saveFile(filename, playerName1, playerName2);
                 
             }
             else if (playerMove == "quit")
