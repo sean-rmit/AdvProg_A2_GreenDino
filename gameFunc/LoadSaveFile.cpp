@@ -14,6 +14,12 @@ LoadSave::LoadSave(LoadSave &other)
 {
 }
 
+void LoadSave::saveFile(std::string saveFile, std::string player1, std::string player2) {
+    std::ofstream saveToFile(saveFile);
+    saveToFile << player1;
+    saveToFile << player2;
+}
+
 void LoadSave::loadFile(std::string loadFile)
 {
     // Reading file

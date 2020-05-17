@@ -13,6 +13,8 @@ public:
     // copy constructor
     LoadSave(LoadSave& other);
 
+    void saveFile(std::string saveFile, std::string player1, std::string player2);
+
     void loadFile(std::string loadFile);
 
     void getData(std::string line, std::string &data);
