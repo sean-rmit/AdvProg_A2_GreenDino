@@ -24,6 +24,12 @@ int main(int argc, char **argv)
 
 void processArgs(int argc, char **argv, Args *args)
 {
+    if (argc == 1)
+    {
+        int seed = 0;
+        mainMenuPage(seed);
+    }
+
     if (argc >= 2)
     {
         char *a = argv[2];
@@ -33,9 +39,6 @@ void processArgs(int argc, char **argv, Args *args)
         if (std::string(argv[1]) == "-s")
         {
             mainMenuPage(seedInput);
-        }
-        else {
-            mainMenuPage(0);
         }
     }
 }
