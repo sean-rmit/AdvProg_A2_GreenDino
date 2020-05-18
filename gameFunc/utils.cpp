@@ -29,7 +29,12 @@ void printPlayerMosaic(Player *player) {
         std::cout << " || ";
         std::cout << player->getPlayerMosaic()->getPlayerWall()->getLine(i)->getTilesAsString(true) << std::endl;;
     }
-    std::cout <<"broken: " << player->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->getTilesAsString(true) << std::endl;
+    std::cout <<"6: broken: " << player->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->getTilesAsString(true) << std::endl;
+}
+
+void printPlayerPoints(Player *player1, Player *player2) {
+    std::cout << player1->getPlayerName() << "'s score: " << player1->getPlayerScore() << std::endl;
+    std::cout << player2->getPlayerName() << "'s score: " << player2->getPlayerScore() << std::endl;
 }
 
 

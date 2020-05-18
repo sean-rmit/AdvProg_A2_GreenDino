@@ -8,7 +8,7 @@
 void printString(std::string s, int num);
 void printFactories(Centre *centre, Factories *factories);
 void printPlayerMosaic(Player *player);
-
+void printPlayerPoints(Player *player1, Player *player2);
 
 
 

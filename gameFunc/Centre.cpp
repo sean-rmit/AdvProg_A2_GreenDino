@@ -1,5 +1,7 @@
 #include "Centre.h"
 
+#include <iostream>
+
 Centre::Centre() : centreTiles()
 {
     addTile(FIRSTPLAYER);
@@ -16,7 +18,7 @@ Centre::~Centre()
 
 int Centre::size()
 {
-    return centreTiles.size();
+    return (int)centreTiles.size();
 }
 
 void Centre::addTile(char tileP)
@@ -29,9 +31,19 @@ char Centre::getTileColour(int index) {
 }
 
 char Centre::removeTile(int index) {
-    char tile = centreTiles.at(index);
-    centreTiles.erase(centreTiles.begin() + index);
-    return tile;
+    std::cout << "removeTile(" << index << ")" << std::endl;
+    std::cout << "removeTile(" << (unsigned int)index << ")" << std::endl;
+    std::cout << "centreTiles.size()=" << centreTiles.size() << std::endl;
+    if ((unsigned int)index < centreTiles.size()) {
+        char tile = centreTiles.at(index);
+        centreTiles.erase(centreTiles.begin() + index);
+        std::cout << "removeTile(" << index << ") success!" << std::endl;
+        return tile;
+    }
+    else {
+        throw std::logic_error("ERROR: index out of bounds of centre's vector range");
+    }
+    
 }
 
 void Centre::clear()

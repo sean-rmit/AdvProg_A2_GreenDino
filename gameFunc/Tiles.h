@@ -16,6 +16,5 @@
 #define LIGHTBLUE_TILES_NUM 20
 #define BLACK_TILES_NUM     20
 
-typedef char* tilePtr;
 
 #endif // tiles

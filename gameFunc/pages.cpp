@@ -148,7 +148,7 @@ void newGamePage(int seed)
     bool gameOngoing = true;
     std::cout << "Let’s Play!" << std::endl;
     std::cout << "== INSTRUCTIONS ==" << std::endl;
-    std::cout << "Make a move: turn <factory index> <tile colour> <patternline index>" << std::endl;
+    std::cout << "Make a move: turn <factory index> <tile colour> <mosaic line index>" << std::endl;
     std::cout << "Save the game: save" << std::endl;
     std::cout << "Quit the game: quit" << std::endl;
     std::cout << std::endl;
@@ -158,6 +158,7 @@ void newGamePage(int seed)
         bool roundOngoing = true;
         // initialise the round (aka load factories with tiles)
         std::cout << "=== Start Round ===" << std::endl;
+        printPlayerPoints(game->getPlayer1(), game->getPlayer2());
         game->prepareNewRound();
         while (roundOngoing)
         {
@@ -192,7 +193,7 @@ void newGamePage(int seed)
                 {
                     std::cout << playerName2;
                 }
-                std::cout << "s turn to make a move:" << std::endl;
+                std::cout << "'s turn to make a move:" << std::endl;
                 std::cout << "> ";
                 std::string playerMove;
                 std::cin >> playerMove;
@@ -203,6 +204,7 @@ void newGamePage(int seed)
                     validMove = true;
                     roundOngoing = false;
                     gameOngoing = false;
+                    game->finaliseGame();
                 }
 
                 // TODO: save game function
@@ -260,6 +262,7 @@ void newGamePage(int seed)
 
     if (game->hasGameEnded())
     {
+        game->finaliseGame();
         gameOngoing = false;
     }
 

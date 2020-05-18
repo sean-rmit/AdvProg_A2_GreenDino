@@ -23,7 +23,9 @@ public:
 
     // get line object at given index
     linePtr getLine(int index);
-    void addTile(char tile, int lineIndex, Lid *lid);
+    int addTile(char tile, int lineIndex, Lid *lid);
+    
+    int addEndGameBonusPoints();
 
 private:
     linePtr *wallLines;

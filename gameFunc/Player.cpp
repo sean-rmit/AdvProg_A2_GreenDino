@@ -24,6 +24,11 @@ mosaicPtr Player::getPlayerMosaic()
     return playerMosaic;
 }
 
+int Player::getPlayerScore()
+{
+    return playerScore;
+}
+
 void Player::addToPlayerScore(int score)
 {
     playerScore += score;
@@ -39,12 +44,14 @@ bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
         return false;
     }
     // if factory is empty, invalid move
-    else if (factory->getLine()->getTilesNumber() == 0) {
+    else if (factory->getLine()->getTilesNumber() == 0)
+    {
         std::cout << "factory chosen is empty!" << std::endl;
         return false;
     }
     // if patternline chosen has a different colour, invalid move
-    else if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != NOTILE && playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != colour) {
+    else if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != NOTILE && playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != colour)
+    {
         std::cout << "Pattern line has tiles of colour " << playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) << " but you chose the color " << colour << ". Invalid move!" << std::endl;
     }
     for (int i = 0; i < factory->size(); i++)
@@ -100,7 +107,8 @@ bool Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineInd
         return false;
     }
     // if patternline chosen has a different colour, invalid move
-    else if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != NOTILE && playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != colour) {
+    else if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != NOTILE && playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != colour)
+    {
         std::cout << "Pattern line has tiles of colour " << playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) << " but you chose the color " << colour << ". Invalid move!" << std::endl;
         return false;
     }
@@ -109,7 +117,8 @@ bool Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineInd
     {
         return false;
     }
-    for (int i = 0; i < centre->size(); i++)
+    int centreSize = centre->size();
+    for (int i = 0; i < centreSize; i++)
     {
         // find the tiles from the centre according to the colour the player wants
         if (centre->getTileColour(i) == colour)
@@ -119,7 +128,9 @@ bool Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineInd
             {
                 playerMosaic->putTileToPatternLine(centre->removeTile(i), patternLineIndex);
                 i--;
+                centreSize--;
             }
+
             //else if the pattern line is full, add it to player's broken tiles
             else
             {
@@ -128,13 +139,95 @@ bool Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineInd
                 {
                     playerMosaic->getPlayerBrokenTiles()->getLine()->addTileToBack(centre->removeTile(i));
                     i--;
+                    centreSize--;
                 }
                 // else if broken tiles if full, add tile to lid
                 else
                 {
                     lid->addTileToBack(centre->removeTile(i));
                     i--;
+                    centreSize--;
                 }
+            }
+            tilesTaken = true;
+        }
+    }
+    // only take the Firstplayer token if at least one coloured tile was taken from the centre,
+    // else it was a invalid move and player should repeat his turn again
+    if (tilesTaken && centre->size() > 0 && centre->getTileColour(0) == FIRSTPLAYER)
+    {
+        // check if the player's broken tiles is full
+        if (!playerMosaic->getPlayerBrokenTiles()->getLine()->isFull())
+        {
+            playerMosaic->getPlayerBrokenTiles()->getLine()->addTileToBack(centre->removeTile(0));
+        }
+    }
+    std::cout << "Player::takeTilesFromCentre() success!" << std::endl;
+    return tilesTaken;
+}
+
+bool Player::takeTilesFromFactoryToBrokenLine(Factory *factory, char colour, Centre *centre, Lid *lid)
+{
+    bool tilesTaken = false;
+    // if factory is empty, invalid move
+    if (factory->getLine()->getTilesNumber() == 0)
+    {
+        std::cout << "factory chosen is empty!" << std::endl;
+        return false;
+    }
+    for (int i = 0; i < factory->size(); i++)
+    {
+        // check if the factory has a tile in the current position i
+        if (factory->getLine()->hasTile(i))
+        {
+            //check if the tile is the colour chosen by the player
+            if (factory->getLine()->getTileColour(i) == colour)
+            {
+                // check if the player's broken tiles is full
+                if (!playerMosaic->getPlayerBrokenTiles()->getLine()->isFull())
+                {
+                    playerMosaic->getPlayerBrokenTiles()->getLine()->addTileToBack(factory->getLine()->removeTile(i));
+                }
+                // else if broken tiles if full, add tile to lid
+                else
+                {
+                    lid->addTileToBack(factory->getLine()->removeTile(i));
+                }
+                tilesTaken = true;
+            }
+            //else if tile is not the colour chosen by player, move it to the centre
+            else
+            {
+                centre->addTile(factory->getLine()->removeTile(i));
+            }
+        }
+        else
+        {
+            throw std::logic_error("Factory: Deleting on index with empty tile");
+        }
+    }
+    return tilesTaken;
+}
+
+bool Player::takeTilesFromCentreToBrokenLine(Centre *centre, char colour, Lid *lid)
+{
+    bool tilesTaken = false;
+    for (int i = 0; i < centre->size(); i++)
+    {
+        // find the tiles from the centre according to the colour the player wants
+        if (centre->getTileColour(i) == colour)
+        {
+            // check if the player's broken tiles is full
+            if (!playerMosaic->getPlayerBrokenTiles()->getLine()->isFull())
+            {
+                playerMosaic->getPlayerBrokenTiles()->getLine()->addTileToBack(centre->removeTile(i));
+                i--;
+            }
+            // else if broken tiles if full, add tile to lid
+            else
+            {
+                lid->addTileToBack(centre->removeTile(i));
+                i--;
             }
             tilesTaken = true;
         }
@@ -161,7 +254,7 @@ void Player::moveTilesFromPatternLineToWall(Lid *lid)
         {
             for (int i = 0; i < playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->size(); i++)
             {
-                playerMosaic->getPlayerWall()->addTile(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i), lineIndex, lid);
+                addToPlayerScore(playerMosaic->getPlayerWall()->addTile(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i), lineIndex, lid));
             }
         }
     }
@@ -170,4 +263,14 @@ void Player::moveTilesFromPatternLineToWall(Lid *lid)
 void Player::moveTilesFromBrokenTilesToLid(Lid *lid, Centre *centre)
 {
     playerMosaic->getPlayerBrokenTiles()->moveAllTilesToLid(lid, centre);
+}
+
+void Player::addPenaltyPoints()
+{
+    addToPlayerScore(playerMosaic->getPlayerBrokenTiles()->getPenaltyPoints());
+}
+
+void Player::addEndGameBonusPoints()
+{
+    addToPlayerScore(playerMosaic->getPlayerWall()->addEndGameBonusPoints());
 }
