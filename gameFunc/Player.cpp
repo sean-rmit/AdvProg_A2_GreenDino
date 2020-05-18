@@ -46,7 +46,7 @@ bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
     // if factory is empty, invalid move
     else if (factory->getLine()->getTilesNumber() == 0)
     {
-        std::cout << "factory chosen is empty!" << std::endl;
+        std::cout << "Factory chosen is empty!" << std::endl;
         return false;
     }
     // if patternline chosen has a different colour, invalid move
@@ -54,6 +54,24 @@ bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
     {
         std::cout << "Pattern line has tiles of colour " << playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) << " but you chose the color " << colour << ". Invalid move!" << std::endl;
     }
+    // check if factory contains the color specified first, if none then invalid move
+    bool hasColour = false;
+    for (int i = 0; i < factory->size(); i++)
+    {
+        // check if the factory has a tile in the current position i
+        if (factory->getLine()->hasTile(i))
+        {
+            //check if the tile is the colour chosen by the player
+            if (factory->getLine()->getTileColour(i) == colour) {
+                hasColour = true;
+            }
+        }
+    }
+    if (!hasColour) {
+        std::cout << "factory chosen does not have the colour " << colour << "!" << std::endl;
+        return false;
+    }
+
     for (int i = 0; i < factory->size(); i++)
     {
         // check if the factory has a tile in the current position i
@@ -162,7 +180,6 @@ bool Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineInd
             playerMosaic->getPlayerBrokenTiles()->getLine()->addTileToBack(centre->removeTile(0));
         }
     }
-    std::cout << "Player::takeTilesFromCentre() success!" << std::endl;
     return tilesTaken;
 }
 
@@ -172,7 +189,7 @@ bool Player::takeTilesFromFactoryToBrokenLine(Factory *factory, char colour, Cen
     // if factory is empty, invalid move
     if (factory->getLine()->getTilesNumber() == 0)
     {
-        std::cout << "factory chosen is empty!" << std::endl;
+        std::cout << "Factory chosen is empty!" << std::endl;
         return false;
     }
     for (int i = 0; i < factory->size(); i++)
