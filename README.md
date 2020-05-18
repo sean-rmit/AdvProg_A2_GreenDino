@@ -9,8 +9,9 @@ Group Members:
 - Amy Nguyen
 - Sean Tan
 
-Bugs discovered:
-- write any bugs discovered here
+Errors discovered:
+- After a round completes and last tile is placed, there is a logic error, and sometimes a segmentation fault
+- Adding the last tile to Line 6 (Broken) causes an out_of_range error
 
 Features that needs implementation:
 - saved game function needs to be integrated into saveGamePage() in pages.cpp

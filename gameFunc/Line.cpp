@@ -3,107 +3,151 @@
 #include <exception>
 #include <iostream>
 
-Line::Line() {
+Line::Line()
+{
     this->array_length = 0;
     numTiles = 0;
 }
 
-Line::Line(int length) {
+Line::Line(int length)
+{
     this->numTiles = 0;
     this->array_length = length;
     line = new char[array_length];
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < length; i++)
+    {
         line[i] = NOTILE;
     }
 }
 
-Line::~Line() {
+Line::~Line()
+{
     delete line;
 }
 
-int Line::size() {
+int Line::size()
+{
     return array_length;
 }
 
-int Line::getTilesNumber() {
+int Line::getTilesNumber()
+{
     return numTiles;
 }
 
-void Line::addTileToBack(char tile) {
-    if (numTiles < array_length) {
+void Line::addTileToBack(char tile)
+{
+    if (numTiles < array_length)
+    {
         line[numTiles] = tile;
         numTiles++;
     }
-    else {
+    else
+    {
         std::cout << "ERROR: exceeded line size" << std::endl;
     }
 }
 
-void Line::addTileToIndex(char tile, int index) {
-    if (index >= 0 && index < array_length) {
+void Line::addTileToIndex(char tile, int index)
+{
+    if (index >= 0 && index < array_length)
+    {
         line[index] = tile;
         numTiles++;
     }
-    else {
-        std::cout << "ERROR: index out of bounds of line range" << std::endl;
+    else
+    {
+        std::cout << "ERROR: index out of bounds of line range 1" << std::endl;
     }
 }
 
-char Line::getTileColour(int index) {
-    if (index >= 0 && index < array_length) {
+char Line::getTileColour(int index)
+{
+    if (index >= 0 && index < array_length)
+    {
         return line[index];
     }
-    else {
-        throw std::logic_error("ERROR: index out of bounds of line range");
+    else
+    {
+        throw std::logic_error("ERROR: index out of bounds of line range 2");
     }
 }
 
-bool Line::hasTile(int index) {
-    if (index >= 0 && index < array_length) {
-        if (line[index] != NOTILE) {
-            return true;
-        } else {
-            return false;
+bool Line::hasTile(int index)
+{
+    try
+    {
+        if (index >= 0 && index < array_length)
+        {
+            if (line[index] != NOTILE)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            throw std::logic_error("ERROR: index out of bounds of line range 3");
         }
     }
-    else {
-        throw std::logic_error("ERROR: index out of bounds of line range");
+    catch (std::logic_error)
+    {
+        std::cout << "Logic Error Caught" << std::endl;
     }
+
+    return false;
 }
 
-bool Line::isFull() {
-    if (numTiles == array_length) {
+bool Line::isFull()
+{
+    if (numTiles == array_length)
+    {
         return true;
     }
-    else {
+    else
+    {
         return false;
     }
 }
 
-char Line::removeTile(int index) {
-    if (index >= 0 && index < array_length) {
-        if (line[index] != NOTILE) {
+char Line::removeTile(int index)
+{
+    if (index >= 0 && index < array_length)
+    {
+        if (line[index] != NOTILE)
+        {
             char tile = line[index];
             line[index] = NOTILE;
             numTiles--;
             return tile;
-        } else {
-            throw std::logic_error("ERROR: index out of bounds of line range");
+        }
+        else
+        {
+            throw std::logic_error("ERROR: index out of bounds of line range 4");
         }
     }
-    else {
+    else
+    {
         throw std::logic_error("Line: Deleting on index with empty tile");
     }
 }
 
-std::string Line::getTilesAsString(bool hasNoTile) {
+std::string Line::getTilesAsString(bool hasNoTile)
+{
     std::string allTilesAsString;
-    for (int i = 0; i < array_length; i++) {
-        if (line[i] != NOTILE) {
+    for (int i = 0; i < array_length; i++)
+    {
+        if (line[i] != NOTILE)
+        {
             allTilesAsString += line[i];
         }
-        else {
-            if (hasNoTile) {
+        else
+        {
+            if (hasNoTile)
+            {
                 allTilesAsString += NOTILE;
             }
         }

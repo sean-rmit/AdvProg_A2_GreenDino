@@ -85,7 +85,7 @@ bool Game::playerMakesMove(int playerNum)
     }
 
     // validate factoryNum
-    // FACTORIES_NUM+1 because centre is included
+    // FACTORIES_NUM + 1 because centre is included
     if (factoryNum < 0 || factoryNum >= FACTORIES_NUM + 1)
     {
         std::cout << "Invalid factoryNum!" << std::endl;
@@ -99,8 +99,8 @@ bool Game::playerMakesMove(int playerNum)
         return false;
     }
 
-    //validate patternlineIndex
-    // PATTERN_LINES_NUM+1 because borken line is included
+    // validate patternlineIndex
+    // PATTERN_LINES_NUM + 1 because broken line is included
     if (patternlineIndex < 1 || patternlineIndex > PATTERN_LINES_NUM + 1)
     {
         std::cout << "Invalid patternlineIndex!" << std::endl;
