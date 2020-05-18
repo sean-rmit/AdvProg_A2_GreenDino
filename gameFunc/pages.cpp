@@ -250,14 +250,12 @@ void newGamePage(int seed)
                 }
             }
             roundCounter++;
-        }
-
-        roundCounter++;
-        // check if the round has ended (aka factories and centre are all empty)
-        if (game->hasRoundEnded())
-        {
-            game->finaliseRound();
-            roundOngoing = false;
+            // check if the round has ended (aka factories and centre are all empty)
+            if (game->hasRoundEnded())
+            {
+                game->finaliseRound();
+                roundOngoing = false;
+            }
         }
     }
 
