@@ -186,12 +186,13 @@ void newGamePage(int seed)
             {
                 if (roundCounter % 2 == 1)
                 {
-                    std::cout << "Player 1's turn to make a move:" << std::endl;
+                    std::cout << playerName1;
                 }
                 else
                 {
-                    std::cout << "Player 2's turn to make a move:" << std::endl;
+                    std::cout << playerName2;
                 }
+                std::cout << "s turn to make a move:" << std::endl;
                 std::cout << "> ";
                 std::string playerMove;
                 std::cin >> playerMove;
@@ -245,6 +246,7 @@ void newGamePage(int seed)
                     std::cout << "turn <factory index> <tile colour> <patternline index>" << std::endl;
                 }
             }
+            roundCounter++;
         }
 
         roundCounter++;

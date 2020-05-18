@@ -35,7 +35,17 @@ bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
     // if patternLine at patternLineIndex is already full, invalid move
     if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->isFull())
     {
+        std::cout << "Pattern line chosen is full!" << std::endl;
         return false;
+    }
+    // if factory is empty, invalid move
+    else if (factory->getLine()->getTilesNumber() == 0) {
+        std::cout << "factory chosen is empty!" << std::endl;
+        return false;
+    }
+    // if patternline chosen has a different colour, invalid move
+    else if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != NOTILE && playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != colour) {
+        std::cout << "Pattern line has tiles of colour " << playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) << " but you chose the color " << colour << ". Invalid move!" << std::endl;
     }
     for (int i = 0; i < factory->size(); i++)
     {
@@ -83,6 +93,17 @@ bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
 bool Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineIndex, Lid *lid)
 {
     bool tilesTaken = false;
+    // if patternLine at patternLineIndex is already full, invalid move
+    if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->isFull())
+    {
+        std::cout << "Pattern line chosen is full!" << std::endl;
+        return false;
+    }
+    // if patternline chosen has a different colour, invalid move
+    else if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != NOTILE && playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) != colour) {
+        std::cout << "Pattern line has tiles of colour " << playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) << " but you chose the color " << colour << ". Invalid move!" << std::endl;
+        return false;
+    }
     // if patternLine at patternLineIndex is already full, invalid move
     if (playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->isFull())
     {
