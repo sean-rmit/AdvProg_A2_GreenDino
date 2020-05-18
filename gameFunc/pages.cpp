@@ -225,6 +225,7 @@ void newGamePage(int seed)
                     validMove = true;
                     roundOngoing = false;
                     gameOngoing = false;
+                    game->finaliseGame();
                 }
                 else if (playerMove == "turn")
                 {
