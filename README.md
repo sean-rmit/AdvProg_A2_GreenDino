@@ -10,18 +10,8 @@ Group Members:
 - Sean Tan
 
 Bugs discovered:
-- factory tiles not printing properly, try changing all tileptr into chars
+- write any bugs discovered here
 
 Features that needs implementation:
-- program needs to take in an argument which is the seed. (Example: ./azul 10) < 10 being the seed value
-- mosaic board not printing properly, need to add space after the patternline to straighthen the divider
-- 1: . || .....
-- 2: .. || .....
-- 3: ... || .....
-- 4: .... || .....
-- 5: ..... || .....
-- broken: .......
-
 - saved game function needs to be integrated into saveGamePage() in pages.cpp
-- scoring system (sean will do this)
 
