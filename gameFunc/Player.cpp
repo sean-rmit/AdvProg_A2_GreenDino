@@ -1,6 +1,9 @@
 #include "Player.h"
-
 #include <iostream>
+
+Player::Player()
+{
+}
 
 Player::Player(std::string name)
 {
@@ -62,12 +65,14 @@ bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
         if (factory->getLine()->hasTile(i))
         {
             //check if the tile is the colour chosen by the player
-            if (factory->getLine()->getTileColour(i) == colour) {
+            if (factory->getLine()->getTileColour(i) == colour)
+            {
                 hasColour = true;
             }
         }
     }
-    if (!hasColour) {
+    if (!hasColour)
+    {
         std::cout << "factory chosen does not have the colour " << colour << "!" << std::endl;
         return false;
     }

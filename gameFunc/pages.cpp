@@ -145,6 +145,10 @@ void newGamePage(int seed)
 
     // game initialised
     Game *game = new Game(playerName1, playerName2, seed);
+    Player *player1 = new Player();
+    Player *player2 = new Player();
+    player1 = game->getPlayer1();
+    player2 = game->getPlayer2();
     bool gameOngoing = true;
     std::cout << "Let’s Play!" << std::endl;
     std::cout << "== INSTRUCTIONS ==" << std::endl;
@@ -156,9 +160,9 @@ void newGamePage(int seed)
     while (gameOngoing)
     {
         bool roundOngoing = true;
-        // initialise the round (aka load factories with tiles)
+        // initialise the round (i.e. load factories with tiles)
         std::cout << "=== Start Round ===" << std::endl;
-        printPlayerPoints(game->getPlayer1(), game->getPlayer2());
+        printPlayerPoints(player1, player2);
         game->prepareNewRound();
         while (roundOngoing)
         {
@@ -171,15 +175,21 @@ void newGamePage(int seed)
             {
                 std::cout << playerName2 << std::endl;
             }
+
+            Centre *centre = new Centre();
+            centre = game->getCentre();
+            Factories *factories = new Factories();
+            factories = game->getFactories();
+
             printFactories(game->getCentre(), game->getFactories());
             std::cout << std::endl;
             if (roundCounter % 2 == 1)
             {
-                printPlayerMosaic(game->getPlayer1());
+                printPlayerMosaic(player1);
             }
             else
             {
-                printPlayerMosaic(game->getPlayer2());
+                printPlayerMosaic(player2);
             }
             bool validMove = false;
             // loop until valid move is made
@@ -198,7 +208,7 @@ void newGamePage(int seed)
                 std::string playerMove;
                 std::cin >> playerMove;
 
-                //if Ctrl+D is entered terminate the while loops
+                // if Ctrl+D is entered terminate the while loops
                 if (std::cin.eof())
                 {
                     validMove = true;
@@ -210,15 +220,14 @@ void newGamePage(int seed)
                 // TODO: save game function
                 if (playerMove == "save")
                 {
-                    // validMove = true;
-                    // gameOngoing = false;
-                    // std::cout << "Enter the filename (.txt) you wish to save to:\n";
-                    // std::string filename;
-                    // std::cin >> filename;
-                    // LoadSave *save = new LoadSave();
-                    // save->saveFile(filename, playerName1, playerName2);
+                    validMove = true;
                     roundOngoing = false;
                     gameOngoing = false;
+                    std::cout << "Enter the filename (.txt) you wish to save to:\n";
+                    std::string filename;
+                    std::cin >> filename;
+                    LoadSave *save = new LoadSave();
+                    save->saveFile(filename, player1, player2, centre, factories);
                 }
                 else if (playerMove == "quit")
                 {
@@ -270,24 +279,24 @@ void newGamePage(int seed)
 
 void loadGamePage()
 {
-    // //line 1
-    // printString("=", PAGEWIDTH);
-    // std::cout << std::endl;
+    //line 1
+    printString("=", PAGEWIDTH);
+    std::cout << std::endl;
 
-    // //line 2
-    // printString(" ", PAGEWIDTH / 2 - 4);
-    // std::cout << "LOAD GAME";
-    // std::cout << std::endl;
+    //line 2
+    printString(" ", PAGEWIDTH / 2 - 4);
+    std::cout << "LOAD GAME";
+    std::cout << std::endl;
 
-    // //line 3
-    // printString("=", PAGEWIDTH);
-    // std::cout << std::endl;
-    // std::cout << std::endl;
+    //line 3
+    printString("=", PAGEWIDTH);
+    std::cout << std::endl;
+    std::cout << std::endl;
 
-    // // User input for filename
-    // std::cout << "Enter the filename you wish to load the game from:" << std::endl;
-    // std::string filename;
-    // std::cin >> filename;
+    // User input for filename
+    std::cout << "Enter the filename you wish to load the game from:" << std::endl;
+    std::string filename;
+    std::cin >> filename;
 
     // LoadSave *load = new LoadSave();
     // load->loadFile(filename);
