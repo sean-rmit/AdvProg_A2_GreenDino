@@ -16,8 +16,8 @@ public:
     mosaicPtr getPlayerMosaic();
     // add the score to player's total score, negative parameter means minus score
     void addToPlayerScore(int score);
-    void takeTilesFromFactory(Factory *factory, char colour, Centre *centre, int patternLineIndex, Lid *lid);
-    void takeTilesFromCentre(char colour, Centre *centre, int patternLineIndex, Lid *lid);
+    bool takeTilesFromFactory(Factory *factory, char colour, Centre *centre, int patternLineIndex, Lid *lid);
+    bool takeTilesFromCentre(char colour, Centre *centre, int patternLineIndex, Lid *lid);
     void moveTilesFromPatternLineToWall(Lid *lid);
     void moveTilesFromBrokenTilesToLid(Lid *lid, Centre *centre);
 

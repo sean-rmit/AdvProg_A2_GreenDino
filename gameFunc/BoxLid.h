@@ -29,7 +29,7 @@ public:
     unsigned int size();
 
     // add tile to back of the linked list of lid
-    void addTileToBack(tilePtr tile);
+    void addTileToBack(char tile);
 
     // remove the tile at the front of the linked list of lid
     char removeTileFront();

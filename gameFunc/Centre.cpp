@@ -2,6 +2,7 @@
 
 Centre::Centre() : centreTiles()
 {
+    addTile(FIRSTPLAYER);
 }
 
 Centre::Centre(Centre &other)
@@ -18,17 +19,17 @@ int Centre::size()
     return centreTiles.size();
 }
 
-void Centre::addTile(tilePtr tileP)
+void Centre::addTile(char tileP)
 {
     centreTiles.push_back(tileP);
 }
 
 char Centre::getTileColour(int index) {
-    return *centreTiles.at(index);
+    return centreTiles.at(index);
 }
 
-tilePtr Centre::removeTile(int index) {
-    tilePtr tile = centreTiles.at(index);
+char Centre::removeTile(int index) {
+    char tile = centreTiles.at(index);
     centreTiles.erase(centreTiles.begin() + index);
     return tile;
 }

@@ -21,7 +21,11 @@ void printFactories(Centre *centre, Factories *factories) {
 void printPlayerMosaic(Player *player) {
     std::cout << "Mosaic for " << player->getPlayerName() << " :" << std::endl;
     for (int i = 0; i < PATTERN_LINES_NUM; i++) {
-        std::cout << i+1 <<": " << player->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->getTilesAsString(true);
+        std::cout << i+1 <<": ";
+        for (int j = 0; j < PATTERN_LINES_NUM - i; j++) {
+            std::cout << " ";
+        }
+        std::cout << player->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->getTilesAsString(true);
         std::cout << " || ";
         std::cout << player->getPlayerMosaic()->getPlayerWall()->getLine(i)->getTilesAsString(true) << std::endl;;
     }

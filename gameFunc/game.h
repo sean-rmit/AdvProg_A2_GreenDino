@@ -21,7 +21,7 @@ public:
 
     void finaliseRound();
     void prepareNewRound();
-    bool playerMakesMove(int playerNum, std::string move);
+    bool playerMakesMove(int playerNum);
     bool hasRoundEnded();
     bool hasGameEnded();
     void finaliseGame();

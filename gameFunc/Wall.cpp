@@ -35,9 +35,9 @@ linePtr Wall::getLine(int index) {
     return wallLines[index];
 }
 
-void Wall::addTile(tilePtr tile, int lineIndex, Lid *lid) {
+void Wall::addTile(char tile, int lineIndex, Lid *lid) {
     for (int i = 0; i < WALL_LINES_NUM; i++) {
-        if (fixedColourPattern[lineIndex][i] == *tile) {
+        if (fixedColourPattern[lineIndex][i] == tile) {
             if (!wallLines[lineIndex]->hasTile(i)) {
                 wallLines[lineIndex]->addTileToIndex(tile, i);
             }

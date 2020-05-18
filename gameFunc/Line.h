@@ -14,17 +14,17 @@ public:
     int getTilesNumber();
 
     // although these two functions exists in the same class, they cannot be called simultaneously
-    void addTileToBack(tilePtr tile);
-    void addTileToIndex(tilePtr tile, int index);
+    void addTileToBack(char tile);
+    void addTileToIndex(char tile, int index);
 
     char getTileColour(int index);
     bool hasTile(int index);
     bool isFull();
-    tilePtr removeTile(int index);
+    char removeTile(int index);
     std::string getTilesAsString(bool hasNoTile);
     
 private:
-    tilePtr* line;
+    char* line;
     int array_length; //size of the array of line
     int numTiles; // number of tiles in array of line
     

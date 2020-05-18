@@ -41,23 +41,9 @@ void creditsPage()
     std::cout << std::endl;
     std::cout << std::endl;
 
-    //toolbar
-    std::cout << "< enter B to go back to Main menu" << std::endl;
-
-    bool creditsPageRunning = true;
-    while (creditsPageRunning)
-    {
-        char input;
-        std::cin >> input;
-        if (input == 'B' || input == 'b')
-        {
-            creditsPageRunning = false;
-        }
-        else
-        {
-            std::cout << "No such available input! Please try again." << std::endl;
-        }
-    }
+    std::cout << "New Game < enter 'N'" << std::endl;
+    std::cout << "Load Game < enter 'L'" << std::endl;
+    std::cout << "Quit Game < enter 'Q'" << std::endl;
 }
 
 void mainMenuPage(int seed)
@@ -103,13 +89,14 @@ void mainMenuPage(int seed)
     bool mainMenuRunning = true;
     while (mainMenuRunning)
     {
+        std::cout << "> ";
         char input;
         std::cin >> input;
         if (input == 'C' || input == 'c')
         {
             creditsPage();
         }
-        else if (input == 'Q' || input == 'q')
+        else if (std::cin.eof() || input == 'Q' || input == 'q')
         {
             mainMenuRunning = false;
         }
@@ -147,9 +134,11 @@ void newGamePage(int seed)
 
     // take in player names
     std::cout << "Enter a name for player 1:" << std::endl;
+    std::cout << "> ";
     std::string playerName1;
     std::cin >> playerName1;
     std::cout << "Enter a name for player 2:" << std::endl;
+    std::cout << "> ";
     std::string playerName2;
     std::cin >> playerName2;
     std::cout << std::endl;
@@ -158,68 +147,103 @@ void newGamePage(int seed)
     Game *game = new Game(playerName1, playerName2, seed);
     bool gameOngoing = true;
     std::cout << "Let’s Play!" << std::endl;
+    std::cout << "== INSTRUCTIONS ==" << std::endl;
+    std::cout << "Make a move: turn <factory index> <tile colour> <patternline index>" << std::endl;
+    std::cout << "Save the game: save" << std::endl;
+    std::cout << "Quit the game: quit" << std::endl;
     std::cout << std::endl;
     int roundCounter = 1; // odd = player 1 turn, even = player 2 turn
     while (gameOngoing)
     {
+        bool roundOngoing = true;
         // initialise the round (aka load factories with tiles)
         std::cout << "=== Start Round ===" << std::endl;
         game->prepareNewRound();
-
-        std::cout << "TURN FOR PLAYER: ";
-        if (roundCounter % 2 == 1)
+        while (roundOngoing)
         {
-            std::cout << playerName1 << std::endl;
-        }
-        else
-        {
-            std::cout << playerName2 << std::endl;
-        }
-        printFactories(game->getCentre(), game->getFactories());
-        std::cout << std::endl;
-        if (roundCounter % 2 == 1)
-        {
-            printPlayerMosaic(game->getPlayer1());
-        }
-        else
-        {
-            printPlayerMosaic(game->getPlayer2());
-        }
-        bool validMove = false;
-        // loop until valid move is made
-        while (!validMove)
-        {
-            std::string playerMove;
-            std::cin >> playerMove;
-
-            // TODO: save game function
-            if (playerMove == "save")
+            std::cout << "TURN FOR PLAYER: ";
+            if (roundCounter % 2 == 1)
             {
-                validMove = true;
-                gameOngoing = false;
-                std::cout << "Enter the filename (.txt) you wish to save to:\n";
-                std::string filename;
-                std::cin >> filename;
-                LoadSave *save = new LoadSave();
-                save->saveFile(filename, playerName1, playerName2);
-                
-            }
-            else if (playerMove == "quit")
-            {
-                validMove = true;
-                gameOngoing = false;
+                std::cout << playerName1 << std::endl;
             }
             else
             {
+                std::cout << playerName2 << std::endl;
+            }
+            printFactories(game->getCentre(), game->getFactories());
+            std::cout << std::endl;
+            if (roundCounter % 2 == 1)
+            {
+                printPlayerMosaic(game->getPlayer1());
+            }
+            else
+            {
+                printPlayerMosaic(game->getPlayer2());
+            }
+            bool validMove = false;
+            // loop until valid move is made
+            while (!validMove)
+            {
                 if (roundCounter % 2 == 1)
                 {
-                    validMove = game->playerMakesMove(1, playerMove);
+                    std::cout << "Player 1's turn to make a move:" << std::endl;
                 }
                 else
                 {
-                    validMove = game->playerMakesMove(2, playerMove);
+                    std::cout << "Player 2's turn to make a move:" << std::endl;
                 }
-                std::cout << "Turn Successful." << std::endl;
+                std::cout << "> ";
+                std::string playerMove;
+                std::cin >> playerMove;
+
+                //if Ctrl+D is entered terminate the while loops
+                if (std::cin.eof())
+                {
+                    validMove = true;
+                    roundOngoing = false;
+                    gameOngoing = false;
+                }
+
+                // TODO: save game function
+                if (playerMove == "save")
+                {
+                    // validMove = true;
+                    // gameOngoing = false;
+                    // std::cout << "Enter the filename (.txt) you wish to save to:\n";
+                    // std::string filename;
+                    // std::cin >> filename;
+                    // LoadSave *save = new LoadSave();
+                    // save->saveFile(filename, playerName1, playerName2);
+                    roundOngoing = false;
+                    gameOngoing = false;
+                }
+                else if (playerMove == "quit")
+                {
+                    validMove = true;
+                    roundOngoing = false;
+                    gameOngoing = false;
+                }
+                else if (playerMove == "turn")
+                {
+                    if (roundCounter % 2 == 1)
+                    {
+                        validMove = game->playerMakesMove(1);
+                    }
+                    else
+                    {
+                        validMove = game->playerMakesMove(2);
+                    }
+                    if (validMove)
+                    {
+                        std::cout << "Turn Successful." << std::endl;
+                    }
+                }
+                if (!validMove)
+                {
+                    std::cout << "Invalid Move." << std::endl;
+                    std::cout << "To make a move:" << std::endl;
+                    std::cout << "turn <factory index> <tile colour> <patternline index>" << std::endl;
+                }
             }
         }
 
@@ -228,36 +252,39 @@ void newGamePage(int seed)
         if (game->hasRoundEnded())
         {
             game->finaliseRound();
-        }
-        if (game->hasGameEnded())
-        {
-            gameOngoing = false;
+            roundOngoing = false;
         }
     }
+
+    if (game->hasGameEnded())
+    {
+        gameOngoing = false;
+    }
+
     std::cout << "=== GAME OVER ===" << std::endl;
 }
 
 void loadGamePage()
 {
-    //line 1
-    printString("=", PAGEWIDTH);
-    std::cout << std::endl;
+    // //line 1
+    // printString("=", PAGEWIDTH);
+    // std::cout << std::endl;
 
-    //line 2
-    printString(" ", PAGEWIDTH / 2 - 4);
-    std::cout << "LOAD GAME";
-    std::cout << std::endl;
+    // //line 2
+    // printString(" ", PAGEWIDTH / 2 - 4);
+    // std::cout << "LOAD GAME";
+    // std::cout << std::endl;
 
-    //line 3
-    printString("=", PAGEWIDTH);
-    std::cout << std::endl;
-    std::cout << std::endl;
+    // //line 3
+    // printString("=", PAGEWIDTH);
+    // std::cout << std::endl;
+    // std::cout << std::endl;
 
-    // User input for filename
-    std::cout << "Enter the filename you wish to load the game from:" << std::endl;
-    std::string filename;
-    std::cin >> filename;
+    // // User input for filename
+    // std::cout << "Enter the filename you wish to load the game from:" << std::endl;
+    // std::string filename;
+    // std::cin >> filename;
 
-    LoadSave *load = new LoadSave();
-    load->loadFile(filename);
+    // LoadSave *load = new LoadSave();
+    // load->loadFile(filename);
 }

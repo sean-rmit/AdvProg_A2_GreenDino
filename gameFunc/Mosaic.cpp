@@ -23,10 +23,10 @@ brokenTilesPtr Mosaic::getPlayerBrokenTiles() {
     return playerBrokenTiles;
 }
 
-void Mosaic::putTileToPatternLine(tilePtr tile, int patternLineIndex) {
+void Mosaic::putTileToPatternLine(char tile, int patternLineIndex) {
     playerPatternLines->getLine(patternLineIndex)->addTileToBack(tile);
 }
 
-void Mosaic::putTileToBrokenTiles(tilePtr tile) {
+void Mosaic::putTileToBrokenTiles(char tile) {
     playerBrokenTiles->getLine()->addTileToBack(tile);
 }

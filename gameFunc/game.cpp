@@ -48,23 +48,19 @@ void Game::prepareNewRound() {
     }
 }
 
-bool Game::playerMakesMove(int playerNum, std::string move) {
+bool Game::playerMakesMove(int playerNum) {
     int factoryNum;
     char tileColour;
     int patternlineIndex;
+    std::string factoryNumAsString;
+    std::cin >> factoryNumAsString;
+    std::cin >> tileColour;
+    std::string patternlineIndexAsString;
+    std::cin >> patternlineIndexAsString;
 
-    std::string tokens[4];
-    std::istringstream ssin(move);
-    int i = 0;
-    while (ssin.good() && i < 4){
-        ssin >> tokens[i];
-        ++i;
-    }
     try {
-        factoryNum = std::stoi(tokens[1]);
-        std::string tileColourAsString = tokens[2];
-        strcpy(&tileColour, &tileColourAsString[0]);
-        patternlineIndex = std::stoi(tokens[3]);
+        factoryNum = std::stoi(factoryNumAsString);
+        patternlineIndex = std::stoi(patternlineIndexAsString);
     }
     catch (std::invalid_argument const &e) {
         std::cout << "Invalid input" << std::endl;
@@ -74,65 +70,46 @@ bool Game::playerMakesMove(int playerNum, std::string move) {
         std::cout << "Integer overflow: std::out_of_range thrown" << std::endl;
         return false;
     }
-
-    // validate first token "turn"
-    if (tokens[0] != "turn") {
-        std::cout << "Invalid input" << std::endl;
-        std::cout << "DEBUG: Its not turn!" << std::endl;
-        return false;
-    }
     
     // validate factoryNum
     // FACTORIES_NUM+1 because centre is included
     if (factoryNum < 0 || factoryNum >= FACTORIES_NUM+1) {
-        std::cout << "Invalid input" << std::endl;
-        std::cout << "DEBUG: factoryNum wrong!" << std::endl;
+        std::cout << "Invalid factoryNum!" << std::endl;
         return false;
     }
 
     //validate tileColour
     if (tileColour != RED && tileColour != YELLOW && tileColour != DARKBLUE && tileColour != LIGHTBLUE && tileColour != BLACK) {
-        std::cout << "Invalid input" << std::endl;
-        std::cout << "DEBUG: tileColour wrong!" << std::endl;
+        std::cout << "Invalid tileColour!" << std::endl;
         return false;
     }
 
     //validate patternlineIndex
-    if (patternlineIndex < 0 || patternlineIndex >= PATTERN_LINES_NUM) {
-        std::cout << "Invalid input" << std::endl;
-        std::cout << "DEBUG: patternlineIndex wrong!" << std::endl;
+    if (patternlineIndex < 0 || patternlineIndex > PATTERN_LINES_NUM) {
+        std::cout << "Invalid patternlineIndex!" << std::endl;
         return false;
     }
-
+    bool validMove = false;
     // player move
     if (factoryNum == 0) {
         if (playerNum == 1) {
-            player1->takeTilesFromCentre(tileColour, centre, patternlineIndex, lid);
+            validMove = player1->takeTilesFromCentre(tileColour, centre, patternlineIndex-1, lid);
         }
         else if (playerNum == 2) {
-            player2->takeTilesFromCentre(tileColour, centre, patternlineIndex, lid);
+            validMove = player2->takeTilesFromCentre(tileColour, centre, patternlineIndex-1, lid);
         }
-        else {
-            std::cout << "Invalid input" << std::endl;
-            std::cout << "DEBUG: playerNum wrong!" << std::endl;
-            return false;
-        }
+        return validMove;
     }
     else {
         if (playerNum == 1) {
-            player1->takeTilesFromFactory(factories->getFactory(factoryNum-1), tileColour, centre, patternlineIndex, lid);
-            return true;
+            validMove = player1->takeTilesFromFactory(factories->getFactory(factoryNum-1), tileColour, centre, patternlineIndex-1, lid);
         }
         else if (playerNum == 2) {
-            player2->takeTilesFromFactory(factories->getFactory(factoryNum-1), tileColour, centre, patternlineIndex, lid);
-            return true;
+            validMove = player2->takeTilesFromFactory(factories->getFactory(factoryNum-1), tileColour, centre, patternlineIndex-1, lid);
         }
-        else {
-            std::cout << "Invalid input" << std::endl;
-            std::cout << "DEBUG: playerNum wrong!" << std::endl;
-            return false;
-        }
+        return validMove;
     }
+    std::cout << "DEBUG: end of playerMakesMove() function reached, this shouldn't happen" << std::endl;
     return false;
 }
 
@@ -148,7 +125,7 @@ bool Game::hasRoundEnded() {
             isEverythingEmpty = false;
         }
     }
-    return isEverythingEmpty = true;
+    return isEverythingEmpty;
 }
 
 bool Game::hasGameEnded() {

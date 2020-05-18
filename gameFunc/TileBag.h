@@ -27,7 +27,7 @@ public:
     void addTileToBack(char tile);
 
     // remove the tile at the front of the linked list of bag
-    tilePtr removeTileFront();
+    char removeTileFront();
 
     // removes all tiles from the linked list of bag
     void clearBag();

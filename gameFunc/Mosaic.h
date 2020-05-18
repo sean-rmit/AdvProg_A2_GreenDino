@@ -15,8 +15,8 @@ class Mosaic {
     wallPtr getPlayerWall();
     patternLinesPtr getPlayerPatternLines();
     brokenTilesPtr getPlayerBrokenTiles();
-    void putTileToPatternLine(tilePtr tile, int patternLineIndex);
-    void putTileToBrokenTiles(tilePtr tile);
+    void putTileToPatternLine(char tile, int patternLineIndex);
+    void putTileToBrokenTiles(char tile);
 
     private:
         Wall *playerWall;

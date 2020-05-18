@@ -19,12 +19,12 @@ public:
     int size();
 
     // adds tiles to factory
-    void addTile(tilePtr tileP);
+    void addTile(char tileP);
 
     char getTileColour(int index);
 
     // removes tiles from a factory
-    tilePtr removeTile(int index);
+    char removeTile(int index);
 
     // removes all tiles from factories
     void clear();
@@ -33,7 +33,7 @@ public:
 
 private:
 
-    std::vector<tilePtr> centreTiles;
+    std::vector<char> centreTiles;
 
 };
 

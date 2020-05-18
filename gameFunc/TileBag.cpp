@@ -42,11 +42,11 @@ void Bag::addTileToBack(char tile) {
     }
 }
 
-tilePtr Bag::removeTileFront() {
+char Bag::removeTileFront() {
     if (bag->head != nullptr) {
         Node* toRemove = bag->head;
         bag->head = bag->head->next;
-        tilePtr tile = new char(toRemove->tile);
+        char tile = toRemove->tile;
         delete toRemove;
         return tile;
     } else {

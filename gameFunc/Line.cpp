@@ -11,9 +11,9 @@ Line::Line() {
 Line::Line(int length) {
     this->numTiles = 0;
     this->array_length = length;
-    line = new tilePtr[array_length];
+    line = new char[array_length];
     for (int i = 0; i < length; i++) {
-        line[i] = nullptr;
+        line[i] = NOTILE;
     }
 }
 
@@ -29,7 +29,7 @@ int Line::getTilesNumber() {
     return numTiles;
 }
 
-void Line::addTileToBack(tilePtr tile) {
+void Line::addTileToBack(char tile) {
     if (numTiles < array_length) {
         line[numTiles] = tile;
         numTiles++;
@@ -39,7 +39,7 @@ void Line::addTileToBack(tilePtr tile) {
     }
 }
 
-void Line::addTileToIndex(tilePtr tile, int index) {
+void Line::addTileToIndex(char tile, int index) {
     if (index >= 0 && index < array_length) {
         line[index] = tile;
         numTiles++;
@@ -51,7 +51,7 @@ void Line::addTileToIndex(tilePtr tile, int index) {
 
 char Line::getTileColour(int index) {
     if (index >= 0 && index < array_length) {
-        return *line[index];
+        return line[index];
     }
     else {
         throw std::logic_error("ERROR: index out of bounds of line range");
@@ -60,7 +60,7 @@ char Line::getTileColour(int index) {
 
 bool Line::hasTile(int index) {
     if (index >= 0 && index < array_length) {
-        if (line[index] != nullptr) {
+        if (line[index] != NOTILE) {
             return true;
         } else {
             return false;
@@ -80,11 +80,11 @@ bool Line::isFull() {
     }
 }
 
-tilePtr Line::removeTile(int index) {
+char Line::removeTile(int index) {
     if (index >= 0 && index < array_length) {
-        if (line[index] != nullptr) {
-            tilePtr tile = line[index];
-            line[index] = nullptr;
+        if (line[index] != NOTILE) {
+            char tile = line[index];
+            line[index] = NOTILE;
             numTiles--;
             return tile;
         } else {
@@ -99,7 +99,7 @@ tilePtr Line::removeTile(int index) {
 std::string Line::getTilesAsString(bool hasNoTile) {
     std::string allTilesAsString;
     for (int i = 0; i < array_length; i++) {
-        if (line[i] != nullptr) {
+        if (line[i] != NOTILE) {
             allTilesAsString += line[i];
         }
         else {

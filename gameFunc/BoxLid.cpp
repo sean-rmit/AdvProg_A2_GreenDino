@@ -27,9 +27,9 @@ unsigned int Lid::size() {
     return length;
 }
 
-void Lid::addTileToBack(tilePtr tile) {
+void Lid::addTileToBack(char tile) {
     Node* newTile = new Node();
-    newTile->tile = *tile;
+    newTile->tile = tile;
     newTile->next = nullptr;
 
     if (lid->head == nullptr) {
@@ -41,7 +41,6 @@ void Lid::addTileToBack(tilePtr tile) {
         }
         current->next = newTile;
     }
-    delete tile;
 }
 
 char Lid::removeTileFront() {

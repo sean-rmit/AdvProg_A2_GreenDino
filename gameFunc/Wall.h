@@ -23,7 +23,7 @@ public:
 
     // get line object at given index
     linePtr getLine(int index);
-    void addTile(tilePtr tile, int lineIndex, Lid *lid);
+    void addTile(char tile, int lineIndex, Lid *lid);
 
 private:
     linePtr *wallLines;
