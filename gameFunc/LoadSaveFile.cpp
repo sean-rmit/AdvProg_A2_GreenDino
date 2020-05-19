@@ -54,7 +54,7 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
     saveToFile << "PLAYER_2_FLOOR_LINE=" << player2->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->getTilesAsString(true) << std::endl;
     for (int i = 0; i < 5; i++)
     {
-        saveToFile << "PLAYER_2_MOSAIC_" << i << "=" << player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->getTilesAsString(true) << std::endl;
+        saveToFile << "PLAYER_2_MOSAIC_" << i << "=" << player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->getTilesAsString(true) << std::endl;
     }
 
     // Current Player
