@@ -63,8 +63,7 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
 }
 
 /* Change here */
-void LoadSave::loadFile(std::string loadFile)
-//, Factories *factories, Player *player1
+void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer)
 {
     // Reading file
     std::ifstream savedFile(loadFile);
@@ -72,21 +71,20 @@ void LoadSave::loadFile(std::string loadFile)
     bool found = false;
 
     // Check if file exists
-    if (!savedFile && (found == false))
-    {
-        std::cout << "File was not found, please enter another file: " << std::endl;
-        std::string filename;
-        std::cin >> filename;
+    // if (!savedFile && (found == false))	
+    // {
+    //     std::cout << "File was not found, please enter another file: " << std::endl;	
+    //     std::string filename;
+    //     std::cin >> filename;	    
+    
+    //     LoadSave *load = new LoadSave();
+    //     load->loadFile(filename, player1, player2, centre, factories, bag, lid, currentPlayer);
 
-        // TODO
-        LoadSave *load = new LoadSave();
-        load->loadFile(filename);
-
-        if (savedFile)
-        {
-            found = true;
-        }
-    }
+    //     std::cin >> filename;
+    //     if (savedFile) {	
+    //         found = true;
+    //     }
+    // }
 
     // while loop to read everything
     std::string line;
@@ -106,7 +104,8 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                bag->addTileToBack(data[k]);
+                // std::cout << data[k] << std::endl;
             }
         }
 
@@ -117,7 +116,8 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                lid->addTileToBack(data[k]);
+                // std::cout << data[k] << std::endl;
             }
         }
         
@@ -129,22 +129,24 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                centre->addTile(data[k]);
+                // std::cout << data[k] << std::endl;
             }
         }
 
         for (int i = 0; i <= 4; i++)
         {
-            std::string factories = "FACTORY_";
-            factories += std::to_string(i);
-            if (line.find(factories) != std::string::npos)
+            std::string factory = "FACTORY_";
+            factory += std::to_string(i);
+            if (line.find(factory) != std::string::npos)
             {
                 getData(line, data);
 
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    std::cout << data[k] << std::endl;
+                    factories->getFactory(i)->getLine()->addTileToBack(data[k]);
+                    // std::cout << data[k] << std::endl;
                 }
             }
         }
@@ -157,19 +159,22 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                player1->getPlayerName();
+                // std::cout << data[k] << std::endl;
             }
         }
 
         if (line.find("PLAYER_1_SCORE") != std::string::npos)
         {
             getData(line, data);
+            int score = std::stoi(data);
+            player1->addToPlayerScore(score);
 
-            dl = data.length();
-            for (k = 0; k < dl; k++)
-            {
-                std::cout << data[k] << std::endl;
-            }
+            // dl = data.length();
+            // for (k = 0; k < dl; k++)
+            // {
+            //     // std::cout << data[k] << std::endl;
+            // }
         }
 
         for (int i = 1; i <= 5; i++)
@@ -183,7 +188,8 @@ void LoadSave::loadFile(std::string loadFile)
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    std::cout << data[k] << std::endl;
+                    player1->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->addTileToBack(data[k]);
+                    // std::cout << data[k] << std::endl;
                 }
             }
         }
@@ -195,7 +201,8 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                player1->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
+                // std::cout << data[k] << std::endl;
             }
         }
 
@@ -210,7 +217,8 @@ void LoadSave::loadFile(std::string loadFile)
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    std::cout << data[k] << std::endl;
+                    player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    // std::cout << data[k] << std::endl;
                 }
             }
         }
@@ -223,19 +231,22 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                player2->getPlayerName();
+                // std::cout << data[k] << std::endl;
             }
         }
 
         if (line.find("PLAYER_2_SCORE") != std::string::npos)
         {
             getData(line, data);
+            int score = std::stoi(data);
+            player2->addToPlayerScore(score);
 
-            dl = data.length();
-            for (k = 0; k < dl; k++)
-            {
-                std::cout << data[k] << std::endl;
-            }
+            // dl = data.length();
+            // for (k = 0; k < dl; k++)
+            // {
+            //     // std::cout << data[k] << std::endl;
+            // }
         }
 
         for (int i = 1; i <= 5; i++)
@@ -249,7 +260,8 @@ void LoadSave::loadFile(std::string loadFile)
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    std::cout << data[k] << std::endl;
+                    player1->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->addTileToBack(data[k]);
+                    // std::cout << data[k] << std::endl;
                 }
             }
         }
@@ -261,7 +273,8 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                player1->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
+                // std::cout << data[k] << std::endl;
             }
         }
 
@@ -276,7 +289,8 @@ void LoadSave::loadFile(std::string loadFile)
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    std::cout << data[k] << std::endl;
+                    player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    // std::cout << data[k] << std::endl;
                 }
             }
         }
@@ -289,7 +303,8 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                currentPlayer;
+                // std::cout << data[k] << std::endl;
             }
         }
     }
