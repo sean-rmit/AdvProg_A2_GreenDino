@@ -87,12 +87,6 @@ void LoadSave::loadFile(std::string loadFile)
         }
     }
 
-    // TODO: use these to make sure all elements are loaded up, return error if one of them doesn't load
-    // bool factoriesLoaded = false;
-    // bool playersLoaded = false;
-
-    // add more
-
     // while loop to read everything
     std::string line;
     while (getline(savedFile, line))
@@ -114,10 +108,6 @@ void LoadSave::loadFile(std::string loadFile)
                 std::cout << data[k] << std::endl;
             }
         }
-        else 
-        {
-            std::cout << "'BAG' was not found" << std::endl;
-        }
 
         if (line.find("LID") != std::string::npos)
         {
@@ -128,10 +118,6 @@ void LoadSave::loadFile(std::string loadFile)
             {
                 std::cout << data[k] << std::endl;
             }
-        }
-        else 
-        {
-            std::cout << "'LID' was not found" << std::endl;
         }
         
 
@@ -144,10 +130,6 @@ void LoadSave::loadFile(std::string loadFile)
             {
                 std::cout << data[k] << std::endl;
             }
-        }
-        else 
-        {
-            std::cout << "'FACTORY_CENTRE' was not found" << std::endl;
         }
 
         for (int i = 0; i <= 4; i++)
@@ -164,10 +146,6 @@ void LoadSave::loadFile(std::string loadFile)
                     std::cout << data[k] << std::endl;
                 }
             }
-            else 
-            {
-                std::cout << "'FACTORY_" << i << "' was not found" << std::endl;
-            }
         }
 
         //PLAYER_1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -181,10 +159,6 @@ void LoadSave::loadFile(std::string loadFile)
                 std::cout << data[k] << std::endl;
             }
         }
-        else 
-        {
-            std::cout << "'PLAYER_1_NAME' was not found" << std::endl;
-        }
 
         if (line.find("PLAYER_1_SCORE") != std::string::npos)
         {
@@ -195,10 +169,6 @@ void LoadSave::loadFile(std::string loadFile)
             {
                 std::cout << data[k] << std::endl;
             }
-        }
-        else 
-        {
-            std::cout << "'PLAYER_1_SCORE' was not found" << std::endl;
         }
 
         for (int i = 1; i <= 5; i++)
@@ -215,10 +185,6 @@ void LoadSave::loadFile(std::string loadFile)
                     std::cout << data[k] << std::endl;
                 }
             }
-            else 
-            {
-                std::cout << "'PLAYER_1_PATTERN_LINE" << i << "' was not found" << std::endl;
-            }
         }
 
         if (line.find("PLAYER_1_FLOOR_LINE") != std::string::npos)
@@ -230,10 +196,6 @@ void LoadSave::loadFile(std::string loadFile)
             {
                 std::cout << data[k] << std::endl;
             }
-        }
-        else 
-        {
-            std::cout << "'PLAYER_1_FLOOR_LINE' was not found" << std::endl;
         }
 
         for (int i = 0; i <= 4; i++)
@@ -250,10 +212,6 @@ void LoadSave::loadFile(std::string loadFile)
                     std::cout << data[k] << std::endl;
                 }
             }
-            else 
-            {
-                std::cout << "'PLAYER_1_MOSAIC_" << i << "' was not found" << std::endl;
-            }
         }
 
         //PLAYER_2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -267,10 +225,6 @@ void LoadSave::loadFile(std::string loadFile)
                 std::cout << data[k] << std::endl;
             }
         }
-        else 
-        {
-            std::cout << "'PLAYER_2_NAME' was not found" << std::endl;
-        }
 
         if (line.find("PLAYER_2_SCORE") != std::string::npos)
         {
@@ -281,10 +235,6 @@ void LoadSave::loadFile(std::string loadFile)
             {
                 std::cout << data[k] << std::endl;
             }
-        }
-        else 
-        {
-            std::cout << "'PLAYER_2_SCORE' was not found" << std::endl;
         }
 
         for (int i = 1; i <= 5; i++)
@@ -301,10 +251,6 @@ void LoadSave::loadFile(std::string loadFile)
                     std::cout << data[k] << std::endl;
                 }
             }
-            else 
-            {
-                std::cout << "'PLAYER_1_PATTERN_LINE" << i << "' was not found" << std::endl;
-            }
         }
 
         if (line.find("PLAYER_2_FLOOR_LINE") != std::string::npos)
@@ -316,10 +262,6 @@ void LoadSave::loadFile(std::string loadFile)
             {
                 std::cout << data[k] << std::endl;
             }
-        }
-        else 
-        {
-            std::cout << "'CURRENT_PLAYER' was not found" << std::endl;
         }
 
         for (int i = 0; i <= 4; i++)
@@ -336,10 +278,6 @@ void LoadSave::loadFile(std::string loadFile)
                     std::cout << data[k] << std::endl;
                 }
             }
-            else 
-            {
-                std::cout << "'PLAYER_2_MOSIAC_" << i << "' was not found" << std::endl;
-            }
         }
 
         //OTHER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -352,10 +290,6 @@ void LoadSave::loadFile(std::string loadFile)
             {
                 std::cout << data[k] << std::endl;
             }
-        }
-        else 
-        {
-            std::cout << "'CURRENT_PLAYER' was not found" << std::endl;
         }
     }
 }
