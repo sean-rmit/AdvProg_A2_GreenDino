@@ -115,24 +115,32 @@ bool Line::isFull()
 
 char Line::removeTile(int index)
 {
+    char tile = line[index];
     if (index >= 0 && index < array_length)
     {
-        if (line[index] != NOTILE)
+        try
         {
-            char tile = line[index];
-            line[index] = NOTILE;
-            numTiles--;
-            return tile;
+            if (line[index] != NOTILE)
+            {
+                line[index] = NOTILE;
+                numTiles--;
+                return tile;
+            }
+            else
+            {
+                throw std::logic_error("ERROR: index out of bounds of line range 4");
+            }
         }
-        else
+        catch (std::logic_error)
         {
-            throw std::logic_error("ERROR: index out of bounds of line range 4");
+            std::cout << "Logic Error 4 Caught" << std::endl;
         }
     }
     else
     {
         throw std::logic_error("Line: Deleting on index with empty tile");
     }
+    return tile;
 }
 
 std::string Line::getTilesAsString(bool hasNoTile)

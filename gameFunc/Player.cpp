@@ -35,6 +35,9 @@ int Player::getPlayerScore()
 void Player::addToPlayerScore(int score)
 {
     playerScore += score;
+    if (score < 0) {
+        score = 0;
+    }
 }
 
 bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre, int patternLineIndex, Lid *lid)
@@ -276,11 +279,13 @@ void Player::moveTilesFromPatternLineToWall(Lid *lid)
         {
             for (int i = 0; i < playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->size(); i++)
             {
-                playerMosaic->getPlayerWall()->addTile(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i), lineIndex, lid);
-                addToPlayerScore(playerMosaic->getPlayerWall()->addTile(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i), lineIndex, lid));
+                playerMosaic->getPlayerWall()->getLine(lineIndex)->addTileToIndex(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->getTileColour(lineIndex), lineIndex);
+                playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i);
+                addToPlayerScore(playerMosaic->getPlayerWall()->addTile(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i), lineIndex, lid)); 
             }
         }
     }
+    std::cout << "AFTER CHECK" << std::endl;
 }
 
 void Player::moveTilesFromBrokenTilesToLid(Lid *lid, Centre *centre)
