@@ -26,7 +26,7 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
 
     // Factory Details
     saveToFile << "FACTORY_CENTRE=" << centre->getTilesAsString() << std::endl;
-    for (int i = 0; i < 5; i++)
+    for (int i = 1; i < 5; i++)
     {
         saveToFile << "FACTORY_" << i << "=" << factories->getFactory(i)->getLine()->getTilesAsString(false) << std::endl;
     }
@@ -34,7 +34,7 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
     // Player 1 Details
     saveToFile << "PLAYER_1_NAME=" << player1->getPlayerName() << std::endl;
     saveToFile << "PLAYER_1_SCORE=" << player1->getPlayerScore() << std::endl;
-    for (int i = 1; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         saveToFile << "PLAYER_1_PATTERN_LINE" << i << "=" << player1->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->getTilesAsString(true) << std::endl;
     }
@@ -47,7 +47,7 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
     // Player 2 Details
     saveToFile << "PLAYER_2_NAME=" << player2->getPlayerName() << std::endl;
     saveToFile << "PLAYER_2_SCORE=" << player2->getPlayerScore() << std::endl;
-    for (int i = 1; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         saveToFile << "PLAYER_2_PATTERN_LINE" << i << "=" << player2->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->getTilesAsString(true) << std::endl;
     }
