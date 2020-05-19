@@ -14,15 +14,15 @@ LoadSave::LoadSave(LoadSave &other)
 {
 }
 
-void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, Centre *centre, Factories *factories)
+void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer)
 {
     std::ofstream saveToFile(saveFile);
 
     // Bag
-    saveToFile << "BAG=" << "TODO" << std::endl;
+    saveToFile << "BAG=" << bag->getTilesAsString() << std::endl;
 
     // Lid
-    saveToFile << "LID=" << "TODO" << std::endl;
+    saveToFile << "LID=" << lid->getTilesAsString() << std::endl;
 
     // Factory Details
     saveToFile << "FACTORY_CENTRE=" << centre->getTilesAsString() << std::endl;
@@ -58,7 +58,8 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
     }
 
     // Current Player
-    saveToFile << "CURRENT_PLAYER=" << "TODO" << std::endl;
+    // odd = player 1 turn, even = player 2 turn
+    saveToFile << "CURRENT_PLAYER=" << currentPlayer << std::endl;
 }
 
 /* Change here */

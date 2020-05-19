@@ -13,7 +13,7 @@ public:
     // copy constructor
     LoadSave(LoadSave& other);
 
-    void saveFile(std::string saveFile, Player *player1, Player *player2, Centre *centre, Factories *factories);
+    void saveFile(std::string saveFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer);
 
     void loadFile(std::string loadFile);
     // , Factories *factories, Player *player1

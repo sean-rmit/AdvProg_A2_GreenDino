@@ -217,7 +217,6 @@ void newGamePage(int seed)
                     game->finaliseGame();
                 }
 
-                // TODO: save game function
                 if (playerMove == "save")
                 {
                     validMove = true;
@@ -227,7 +226,7 @@ void newGamePage(int seed)
                     std::string filename;
                     std::cin >> filename;
                     LoadSave *save = new LoadSave();
-                    save->saveFile(filename, player1, player2, centre, factories);
+                    save->saveFile(filename, player1, player2, centre, factories, game->getBag(), game->getLid(), roundCounter);
                 }
                 else if (playerMove == "quit")
                 {
