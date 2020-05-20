@@ -95,7 +95,7 @@ bool Line::hasTile(int index)
     }
     catch (std::logic_error)
     {
-        std::cout << "Logic Error Caught" << std::endl;
+        
     }
 
     return false;
@@ -133,7 +133,7 @@ char Line::removeTile(int index)
         }
         catch (std::logic_error)
         {
-            std::cout << "Logic Error 4 Caught" << std::endl;
+            
         }
     }
     else

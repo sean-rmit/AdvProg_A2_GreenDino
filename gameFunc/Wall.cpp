@@ -60,42 +60,50 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
                 int row = lineIndex;
                 int col = i;
 
+                std::cout << "check row" << std::endl;
                 // check row
-                while (wallLines[row]->hasTile(col + 1))
+                while (col + 1 < WALL_LINES_NUM && wallLines[row]->hasTile(col + 1))
                 {
                     adjacentTilesOnRow++;
                     col++;
+                    std::cout << col << std::endl;
                 }
                 col = i;
-                while (wallLines[row]->hasTile(col - 1))
+                while (col - 1 >= 0 && wallLines[row]->hasTile(col - 1))
                 {
                     adjacentTilesOnRow++;
                     col--;
+                    std::cout << col << std::endl;
                 }
                 col = i;
-
+                std::cout << "check column" << std::endl;
                 // check column
-                while (wallLines[row + 1]->hasTile(col))
+                while (row + 1 < WALL_LINES_NUM && wallLines[row + 1]->hasTile(col))
                 {
                     adjacentTilesOnCol++;
                     row++;
+                    std::cout << row << std::endl;
                 }
                 row = lineIndex;
-                while (wallLines[row - 1]->hasTile(col))
+                while (row-1 >= 0 && wallLines[row - 1]->hasTile(col))
                 {
                     adjacentTilesOnCol++;
                     row--;
+                    std::cout << row << std::endl;
                 }
                 if (adjacentTilesOnRow != 0)
                 {
-                    points += adjacentTilesOnCol + 1;
+                    std::cout << "adjacentTilesOnRow != 0" << std::endl;
+                    points += adjacentTilesOnRow + 1;
                 }
                 if (adjacentTilesOnCol != 0)
                 {
-                    points += adjacentTilesOnRow + 1;
+                    std::cout << "adjacentTilesOnCol != 0" << std::endl;
+                    points += adjacentTilesOnCol + 1;
                 }
                 if (adjacentTilesOnCol == 0 && adjacentTilesOnRow == 0)
                 {
+                    std::cout << "adjacentTilesOnCol == 0 && adjacentTilesOnRow == 0" << std::endl;
                     points = 1;
                 }
                 // end of scoring implementation
@@ -106,6 +114,7 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
             }
         }
     }
+    std::cout << "added points: " << points << std::endl;
     return points;
 }
 
