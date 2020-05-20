@@ -63,8 +63,7 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
 }
 
 /* Change here */
-void LoadSave::loadFile(std::string loadFile)
-//, Factories *factories, Player *player1
+void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer)
 {
     // Reading file
     std::ifstream savedFile(loadFile);
@@ -75,12 +74,12 @@ void LoadSave::loadFile(std::string loadFile)
     if (!savedFile && (found == false))
     {
         std::cout << "File was not found, please enter another file: " << std::endl;
-        std::string filename;
-        std::cin >> filename;
+        // std::string filename;
+        // std::cin >> filename;
 
         // TODO
-        LoadSave *load = new LoadSave();
-        load->loadFile(filename);
+        // LoadSave *load = new LoadSave();
+        // load->loadFile(filename);
 
         if (savedFile)
         {
@@ -106,8 +105,10 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                data[k];
             }
+            std::string s(data);
+            std::cout << s << std::endl;
         }
 
         if (line.find("LID") != std::string::npos)
@@ -117,10 +118,11 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                data[k];
             }
+            std::string s(data);
+            std::cout << s << std::endl;
         }
-        
 
         if (line.find("FACTORY_CENTRE") != std::string::npos)
         {
@@ -129,8 +131,11 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                data[k];
             }
+            std::string s(data);
+            std::cout << s << std::endl;
+            //centre->getTilesAsString();
         }
 
         for (int i = 0; i <= 4; i++)
@@ -144,8 +149,10 @@ void LoadSave::loadFile(std::string loadFile)
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    std::cout << data[k] << std::endl;
+                    data[k];
                 }
+                std::string s(data);
+                std::cout << s << std::endl;
             }
         }
 
@@ -157,8 +164,11 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                data[k];
             }
+            // std::string s(data);
+            //std::cout << s << std::endl;
+            player1->setPlayerName(data);
         }
 
         if (line.find("PLAYER_1_SCORE") != std::string::npos)
@@ -168,8 +178,10 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                data[k];
             }
+            // std::string s(data);
+            player1->setPlayerScore(stoi(data));
         }
 
         for (int i = 1; i <= 5; i++)
@@ -183,8 +195,9 @@ void LoadSave::loadFile(std::string loadFile)
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    std::cout << data[k] << std::endl;
+                    data[k];
                 }
+                std::string s(data);
             }
         }
 
@@ -223,8 +236,11 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                //std::cout << data[k] << std::endl;
+                data[k];
             }
+            // std::string s(data);
+            player2->setPlayerName(data);
         }
 
         if (line.find("PLAYER_2_SCORE") != std::string::npos)
@@ -234,8 +250,10 @@ void LoadSave::loadFile(std::string loadFile)
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                std::cout << data[k] << std::endl;
+                data[k];
             }
+            // std::string s(data);
+            player2->setPlayerScore(stoi(data));
         }
 
         for (int i = 1; i <= 5; i++)

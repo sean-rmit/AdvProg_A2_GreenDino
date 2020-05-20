@@ -10,7 +10,7 @@
 void mainMenuPage(int seed);
 void creditsPage();
 void newGamePage(int seed);
-void loadGamePage();
+void loadGamePage(int seed);
 
 
 #endif // PAGES_H

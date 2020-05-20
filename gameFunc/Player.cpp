@@ -22,14 +22,28 @@ std::string Player::getPlayerName()
     return playerName;
 }
 
+void Player::setPlayerName(std::string name)
+{
+    playerName = name;
+}
+
 mosaicPtr Player::getPlayerMosaic()
 {
     return playerMosaic;
 }
 
+void Player::setPlayerMosaic(Mosaic *mosaic) {
+    playerMosaic = mosaic;
+}
+
 int Player::getPlayerScore()
 {
     return playerScore;
+}
+
+void Player::setPlayerScore(int score)
+{
+    playerScore = score;
 }
 
 void Player::addToPlayerScore(int score)
@@ -332,7 +346,7 @@ void Player::moveTilesFromPatternLineToWall(Lid *lid)
                 // playerMosaic->getPlayerWall()->getLine(lineIndex)->addTileToIndex(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->getTileColour(lineIndex), lineIndex);
                 // playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i);
                 int points = playerMosaic->getPlayerWall()->addTile(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i), lineIndex, lid);
-                addToPlayerScore(points); 
+                addToPlayerScore(points);
             }
         }
     }

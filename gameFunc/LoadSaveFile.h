@@ -15,8 +15,7 @@ public:
 
     void saveFile(std::string saveFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer);
 
-    void loadFile(std::string loadFile);
-    // , Factories *factories, Player *player1
+    void loadFile(std::string loadFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer);
 
     void getData(std::string line, std::string &data);
 };
