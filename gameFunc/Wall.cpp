@@ -60,7 +60,6 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
                 int row = lineIndex;
                 int col = i;
 
-                std::cout << "check row" << std::endl;
                 // check row
                 while (col + 1 < WALL_LINES_NUM && wallLines[row]->hasTile(col + 1))
                 {
@@ -76,7 +75,6 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
                     std::cout << col << std::endl;
                 }
                 col = i;
-                std::cout << "check column" << std::endl;
                 // check column
                 while (row + 1 < WALL_LINES_NUM && wallLines[row + 1]->hasTile(col))
                 {
@@ -93,17 +91,14 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
                 }
                 if (adjacentTilesOnRow != 0)
                 {
-                    std::cout << "adjacentTilesOnRow != 0" << std::endl;
                     points += adjacentTilesOnRow + 1;
                 }
                 if (adjacentTilesOnCol != 0)
                 {
-                    std::cout << "adjacentTilesOnCol != 0" << std::endl;
                     points += adjacentTilesOnCol + 1;
                 }
                 if (adjacentTilesOnCol == 0 && adjacentTilesOnRow == 0)
                 {
-                    std::cout << "adjacentTilesOnCol == 0 && adjacentTilesOnRow == 0" << std::endl;
                     points = 1;
                 }
                 // end of scoring implementation
