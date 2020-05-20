@@ -25,6 +25,7 @@ public:
     bool hasRoundEnded();
     bool hasGameEnded();
     void finaliseGame();
+    void finaliseLoadedGame();
 
     factoriesPtr getFactories();
     centrePtr getCentre();

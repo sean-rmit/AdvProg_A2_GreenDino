@@ -222,6 +222,25 @@ void Game::finaliseGame()
     }
 }
 
+void Game::finaliseLoadedGame()
+{
+    std::cout << "Game has ended: " << std::endl;
+    std::cout << player1->getPlayerName() << "'s score: " << player1->getPlayerScore() << std::endl;
+    std::cout << player2->getPlayerName() << "'s score: " << player2->getPlayerScore() << std::endl;
+
+    if (player1->getPlayerScore() > player2->getPlayerScore())
+    {
+        std::cout << player1->getPlayerName() << " wins the game!" << std::endl;
+    }
+    else if (player1->getPlayerScore() < player2->getPlayerScore())
+    {
+        std::cout << player2->getPlayerName() << " wins the game!" << std::endl;
+    }
+    else {
+        std::cout << "It's a tie!" << std::endl;
+    }
+}
+
 // getters and setters
 factoriesPtr Game::getFactories()
 {

@@ -4,7 +4,12 @@
 
 Centre::Centre() : centreTiles()
 {
-    addTile(FIRSTPLAYER);
+    if (FIRSTPLAYER) {
+    }
+    else
+    {
+        addTile(FIRSTPLAYER);
+    }
 }
 
 Centre::Centre(Centre &other)
@@ -26,20 +31,23 @@ void Centre::addTile(char tileP)
     centreTiles.push_back(tileP);
 }
 
-char Centre::getTileColour(int index) {
+char Centre::getTileColour(int index)
+{
     return centreTiles.at(index);
 }
 
-char Centre::removeTile(int index) {
-    if ((unsigned int)index < centreTiles.size()) {
+char Centre::removeTile(int index)
+{
+    if ((unsigned int)index < centreTiles.size())
+    {
         char tile = centreTiles.at(index);
         centreTiles.erase(centreTiles.begin() + index);
         return tile;
     }
-    else {
+    else
+    {
         throw std::logic_error("ERROR: index out of bounds of centre's vector range");
     }
-    
 }
 
 void Centre::clear()
@@ -47,9 +55,11 @@ void Centre::clear()
     centreTiles.clear();
 }
 
-std::string Centre::getTilesAsString() {
+std::string Centre::getTilesAsString()
+{
     std::string allTilesAsString;
-    for (unsigned int i = 0; i < centreTiles.size(); i++) {
+    for (unsigned int i = 0; i < centreTiles.size(); i++)
+    {
         allTilesAsString += centreTiles.at(i);
     }
     return allTilesAsString;
