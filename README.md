@@ -13,5 +13,5 @@ Things left before project completion:
 1. prettify code and add comments
 2. complete load game and save game feature (aaron)
 3. finish up written report
-4. (add more here)
+4. write test files, input and expeted output
 
