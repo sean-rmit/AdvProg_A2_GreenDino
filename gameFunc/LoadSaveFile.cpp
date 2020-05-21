@@ -125,7 +125,11 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                centre->addTile(data[k]);
+
+                if (data[k] != FIRSTPLAYER)
+                {
+                    centre->addTile(data[k]);
+                }
             }
         }
 
