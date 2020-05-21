@@ -169,7 +169,14 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    player1->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->addTileToBack(data[k]);
+                    if (data[k] == NOTILE)
+                    {
+                        player1->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->removeTile(i);
+                    }
+                    else
+                    {
+                        player1->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->addTileToBack(data[k]);
+                    }
                 }
             }
         }
@@ -196,7 +203,14 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    if (data[k] == NOTILE)
+                    {
+                        player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(i);
+                    }
+                    else
+                    {
+                        player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    }
                 }
             }
         }
@@ -225,7 +239,14 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    player2->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->addTileToBack(data[k]);
+                    if (data[k] == NOTILE)
+                    {
+                        player2->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->removeTile(i);
+                    }
+                    else
+                    {
+                        player2->getPlayerMosaic()->getPlayerPatternLines()->getLine(i)->addTileToBack(data[k]);
+                    }
                 }
             }
         }
@@ -252,7 +273,14 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    if (data[k] == NOTILE)
+                    {
+                        player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(i);
+                    }
+                    else
+                    {
+                        player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    }
                 }
             }
         }
@@ -268,11 +296,11 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 data[k] = currentPlayer;
                 if (currentPlayer % 2 == 1)
                 {
-                    std::cout << player1->getPlayerName() << std::endl;
+                    player1->getPlayerName();
                 }
                 else
                 {
-                    std::cout << player2->getPlayerName() << std::endl;
+                    player2->getPlayerName();
                 }
             }
         }
