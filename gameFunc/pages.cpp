@@ -108,6 +108,7 @@ void mainMenuPage(int seed)
         else if (input == 'L' || input == 'l')
         {
             loadGamePage(seed);
+            mainMenuRunning = false;
         }
         else
         {
@@ -176,11 +177,6 @@ void newGamePage(int seed)
                 std::cout << playerName2 << std::endl;
             }
 
-            Centre *centre = new Centre();
-            centre = game->getCentre();
-            Factories *factories = new Factories();
-            factories = game->getFactories();
-
             printFactories(game->getCentre(), game->getFactories());
             std::cout << std::endl;
             if (roundCounter % 2 == 1)
@@ -227,7 +223,8 @@ void newGamePage(int seed)
                     std::string filename;
                     std::cin >> filename;
                     LoadSave *save = new LoadSave();
-                    save->saveFile(filename, player1, player2, centre, factories, game->getBag(), game->getLid(), roundCounter);
+                    save->saveFile(filename, player1, player2, game->getCentre(), game->getFactories(), game->getBag(), game->getLid(), roundCounter);
+                    delete save;
                 }
                 else if (playerMove == "quit")
                 {
@@ -265,14 +262,16 @@ void newGamePage(int seed)
                 game->finaliseRound();
                 roundOngoing = false;
             }
-        }
-        if (game->hasGameEnded())
-        {
-            game->finaliseGame();
-            gameOngoing = false;
+            if (game->hasGameEnded())
+            {
+                game->finaliseGame();
+                roundOngoing = false;
+                gameOngoing = false;
+            }
         }
     }
     std::cout << "=== GAME OVER ===" << std::endl;
+    delete game;
 }
 
 void loadGamePage(int seed)
@@ -309,22 +308,46 @@ void loadGamePage(int seed)
     bool gameOngoing = true;
     int roundCounter = 0; // odd = player 1 turn, even = player 2 turn
 
-    Centre *centre = new Centre();
-    centre = game->getCentre();
-    Factories *factories = new Factories();
-    factories = game->getFactories();
+    Centre *centre = game->getCentre();
+    Factories *factories = game->getFactories();
 
     LoadSave *load = new LoadSave();
     load->loadFile(filename, player1, player2, centre, factories, game->getBag(), game->getLid(), roundCounter);
-
-    std::string playerMove;
+    std::cout << "=== Azul Game Successfully Loaded ===" << std::endl;
+    std::cout << "Let’s Play!" << std::endl;
+    std::cout << "== INSTRUCTIONS ==" << std::endl;
+    std::cout << "Make a move: turn <factory index> <tile colour> <mosaic line index>" << std::endl;
+    std::cout << "Save the game: save" << std::endl;
+    std::cout << "Quit the game: quit" << std::endl;
+    std::cout << std::endl;
+    bool firstRoundSinceLoad = true;
 
     while (gameOngoing)
     {
         bool roundOngoing = true;
         // initialise the round (i.e. load factories with tiles)
-        std::cout << "=== Azul Game Successfully Loaded ===" << std::endl;
-        printPlayerPoints(player1, player2);
+        if (!firstRoundSinceLoad) {
+            std::cout << "=== Start Round ===" << std::endl;
+            printPlayerPoints(player1, player2);
+            game->prepareNewRound();
+            printPlayerPoints(player1, player2);
+        }
+        else {
+            // check if the round has ended (aka factories and centre are all empty)
+            if (game->hasRoundEnded())
+            {
+                game->finaliseRound();
+                roundOngoing = false;
+            }
+            if (game->hasGameEnded())
+            {
+                game->finaliseGame();
+                roundOngoing = false;
+                gameOngoing = false;
+            }
+            firstRoundSinceLoad = false;
+        }
+        
         while (roundOngoing)
         {
             std::cout << "TURN FOR PLAYER: ";
@@ -361,6 +384,7 @@ void loadGamePage(int seed)
                 }
                 std::cout << "'s turn to make a move:" << std::endl;
                 std::cout << "> ";
+                std::string playerMove;
                 std::cin >> playerMove;
 
                 // if Ctrl+D is entered terminate the while loops
@@ -383,13 +407,14 @@ void loadGamePage(int seed)
                     std::cin >> filename;
                     LoadSave *save = new LoadSave();
                     save->saveFile(filename, player1, player2, centre, factories, game->getBag(), game->getLid(), roundCounter);
+                    delete save;
                 }
                 else if (playerMove == "quit")
                 {
                     validMove = true;
                     roundOngoing = false;
                     gameOngoing = false;
-                    game->finaliseLoadedGame();
+                    game->finaliseGame();
                 }
                 else if (playerMove == "turn")
                 {
@@ -420,17 +445,15 @@ void loadGamePage(int seed)
                 game->finaliseRound();
                 roundOngoing = false;
             }
-        }
-        if (game->hasGameEnded() && playerMove == "quit")
-        {
-            gameOngoing = false;
-        }
-        else if (game->hasGameEnded() && playerMove != "quit")
-        {
-            game->finaliseGame();
-            gameOngoing = false;
+            if (game->hasGameEnded())
+            {
+                game->finaliseGame();
+                roundOngoing = false;
+                gameOngoing = false;
+            }
         }
     }
 
     std::cout << "=== GAME OVER ===" << std::endl;
+    delete game;
 }

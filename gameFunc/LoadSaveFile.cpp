@@ -62,7 +62,7 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
     saveToFile << "CURRENT_PLAYER=" << currentPlayer << std::endl;
 }
 
-void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer)
+void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int &currentPlayer)
 {
     //Reading file in
     bool found = false;
@@ -126,7 +126,9 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                centre->addTile(data[k]);
+                if (data[k] != 'F') {
+                    centre->addTile(data[k]);
+                }
             }
         }
 
@@ -294,15 +296,10 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                data[k] = currentPlayer;
-                if (currentPlayer % 2 == 1)
-                {
-                    player1->getPlayerName();
-                }
-                else
-                {
-                    player2->getPlayerName();
-                }
+                std::string s = "";
+                s.push_back(data[k]);
+                currentPlayer = std::stoi(s);
+                
             }
         }
     }
