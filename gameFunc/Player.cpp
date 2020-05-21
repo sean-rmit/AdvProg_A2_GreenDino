@@ -71,6 +71,15 @@ bool Player::takeTilesFromFactory(Factory *factory, char colour, Centre *centre,
     {
         std::cout << "Pattern line has tiles of colour " << playerMosaic->getPlayerPatternLines()->getLine(patternLineIndex)->getTileColour(0) << " but you chose the color " << colour << ". Invalid move!" << std::endl;
     }
+    // check if wall already has that colour
+    for (int i = 0; i < WALL_LINES_NUM; i++) {
+        if (playerMosaic->getPlayerWall()->getLine(patternLineIndex)->hasTile(i)) {
+            if (playerMosaic->getPlayerWall()->getLine(patternLineIndex)->getTileColour(i) == colour) {
+                std::cout << "Wall already has that color on this line!" << std::endl;
+                return false;
+            }
+        }
+    }
     // check if factory contains the color specified first, if none then invalid move
     bool hasColour = false;
     for (int i = 0; i < factory->size(); i++)
