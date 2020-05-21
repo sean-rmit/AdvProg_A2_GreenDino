@@ -64,27 +64,28 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
 
 void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int currentPlayer)
 {
-    // Reading file
-    std::ifstream savedFile(loadFile);
-
+    //Reading file in
     bool found = false;
-
-    // Check if file exists
-    if (!savedFile && (found == false))
+    while (found == false)
     {
-        std::cout << "File was not found, please enter another file: " << std::endl;
-        // std::string filename;
-        // std::cin >> filename;
+        std::ifstream checkFile(loadFile);
+        // Check if file exists
+        if (!checkFile && (found == false))
+        {
+            std::cout << "File was not found, please enter another file: " << std::endl;
+            std::string filename;
+            std::cin >> filename;
 
-        // TODO
-        // LoadSave *load = new LoadSave();
-        // load->loadFile(filename);
-
-        if (savedFile)
+            loadFile = filename;
+        }
+        else 
         {
             found = true;
+            std::cout << "found" << std::endl;
         }
     }
+    
+    std::ifstream savedFile(loadFile);
 
     // while loop to read everything
     std::string line;
@@ -125,11 +126,7 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-
-                if (data[k] != FIRSTPLAYER)
-                {
-                    centre->addTile(data[k]);
-                }
+                centre->addTile(data[k]);
             }
         }
 
@@ -327,3 +324,5 @@ void LoadSave::getData(std::string line, std::string &data)
 
     data = line.substr(el, ll - el);
 }
+
+
