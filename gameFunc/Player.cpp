@@ -3,6 +3,9 @@
 
 Player::Player()
 {
+    this->playerName = "";
+    this->playerScore = 0;
+    playerMosaic = new Mosaic();
 }
 
 Player::Player(std::string name)

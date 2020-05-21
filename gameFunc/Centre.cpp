@@ -4,7 +4,7 @@
 
 Centre::Centre() : centreTiles()
 {
-    addTile(FIRSTPLAYER);
+    
 }
 
 Centre::Centre(Centre &other)

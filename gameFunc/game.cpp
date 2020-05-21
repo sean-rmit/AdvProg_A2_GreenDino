@@ -6,6 +6,17 @@
 #include <sstream>
 #include <cstring>
 
+Game::Game(int seed)
+{
+    factories = new Factories();
+    centre = new Centre;
+    player1 = new Player();
+    player2 = new Player();
+    lid = new Lid();
+    bag = new Bag();
+    bag->fillBagWithTiles(seed);
+}
+
 Game::Game(std::string playerName1, std::string playerName2, int seed)
 {
     factories = new Factories();
