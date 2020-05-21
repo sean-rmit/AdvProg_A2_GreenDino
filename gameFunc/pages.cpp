@@ -299,9 +299,18 @@ void loadGamePage(int seed)
     int roundCounter = 0; // odd = player 1 turn, even = player 2 turn
 
     LoadSave *load = new LoadSave();
-    load->loadFile(filename, game->getPlayer1(), game->getPlayer2(), game->getCentre(), game->getFactories(), game->getBag(), game->getLid(), roundCounter);
+    Player *player1 = game->getPlayer1();
+    Player *player2 = game->getPlayer2();
+    Centre *centre = game->getCentre();
+    Factories *factories = game->getFactories();
+    Bag *bag = game->getBag();
+    Lid *lid = game->getLid();
+    load->loadFile(filename, player1, player2, centre, factories, bag, lid, roundCounter);
     std::string playerName1 = game->getPlayer1()->getPlayerName();
     std::string playerName2 = game->getPlayer2()->getPlayerName();
+    std::cout << "playerName1: " << playerName1 << std::endl;
+    std::cout << "playerName2: " << playerName2 << std::endl;
+    std::cout << "roundCounter: " << roundCounter << std::endl;
     std::cout << "=== Azul Game Successfully Loaded ===" << std::endl;
     bool firstRoundSinceLoad = true;
 
@@ -310,7 +319,7 @@ void loadGamePage(int seed)
         bool roundOngoing = true;
         // initialise the round (i.e. load factories with tiles)
         std::cout << "=== Start Round ===" << std::endl;
-        printPlayerPoints(game->getPlayer1(), game->getPlayer2());
+        printPlayerPoints(player1, player2);
         if (!firstRoundSinceLoad) {
             game->prepareNewRound();
         }
@@ -333,11 +342,11 @@ void loadGamePage(int seed)
             std::cout << std::endl;
             if (roundCounter % 2 == 1)
             {
-                printPlayerMosaic(game->getPlayer1());
+                printPlayerMosaic(player1);
             }
             else
             {
-                printPlayerMosaic(game->getPlayer2());
+                printPlayerMosaic(player2);
             }
             bool validMove = false;
             // loop until valid move is made
