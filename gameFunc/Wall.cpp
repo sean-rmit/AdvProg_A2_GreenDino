@@ -109,6 +109,7 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
             }
         }
     }
+    std::cout << "added points: " << points << std::endl;
     return points;
 }
 

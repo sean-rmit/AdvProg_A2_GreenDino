@@ -12,7 +12,7 @@
 class Game {
 public:
 
-    Game(int seed);
+    Game();
     Game(std::string playerName1, std::string playerName2, int seed);
     ~Game();
 
