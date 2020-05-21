@@ -14,7 +14,6 @@ Game::Game(std::string playerName1, std::string playerName2, int seed)
     player2 = new Player(playerName2);
     lid = new Lid();
     bag = new Bag();
-    bag->fillBagWithTiles(seed);
 }
 Game::~Game()
 {

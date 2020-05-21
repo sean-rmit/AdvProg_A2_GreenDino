@@ -146,10 +146,9 @@ void newGamePage(int seed)
 
     // game initialised
     Game *game = new Game(playerName1, playerName2, seed);
-    Player *player1 = new Player();
-    Player *player2 = new Player();
-    player1 = game->getPlayer1();
-    player2 = game->getPlayer2();
+    Player *player1 = game->getPlayer1();
+    Player *player2 = game->getPlayer2();
+    game->getBag()->fillBagWithTiles(seed);
     bool gameOngoing = true;
     std::cout << "Let’s Play!" << std::endl;
     std::cout << "== INSTRUCTIONS ==" << std::endl;
