@@ -1,4 +1,0 @@
-N
-testSaveFile.txt
-turn 3 Y 2
-save expected.out

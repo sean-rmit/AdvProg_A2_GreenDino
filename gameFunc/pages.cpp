@@ -26,18 +26,18 @@ void creditsPage()
     std::cout << std::endl;
 
     //line 5
-    printString(" ", PAGEWIDTH / 2 - 4);
-    std::cout << "Sean Tan";
+    printString(" ", PAGEWIDTH / 2 - 8);
+    std::cout << "Sean Tan < s3806690 >";
     std::cout << std::endl;
 
     //line 6
-    printString(" ", PAGEWIDTH / 2 - 5);
-    std::cout << "Aaron Soa";
+    printString(" ", PAGEWIDTH / 2 - 9);
+    std::cout << "Aaron Soa < s3786067 >";
     std::cout << std::endl;
 
     //line 7
-    printString(" ", PAGEWIDTH / 2 - 5);
-    std::cout << "Amy Nguyen";
+    printString(" ", PAGEWIDTH / 2 - 10);
+    std::cout << "Amy Nguyen < s3783694 >";
     std::cout << std::endl;
     std::cout << std::endl;
 
@@ -151,9 +151,9 @@ void newGamePage(int seed)
     game->getBag()->fillBagWithTiles(seed);
     game->getCentre()->addTile(FIRSTPLAYER);
     bool gameOngoing = true;
-    std::cout << "Let’s Play!" << std::endl;
+    std::cout << "Let’s Play!\n" << std::endl;
     std::cout << "== INSTRUCTIONS ==" << std::endl;
-    std::cout << "Make a move: turn <factory index> <tile colour> <mosaic line index>" << std::endl;
+    std::cout << "Make a move: turn <factory index> <tile colour> <patternline index>" << std::endl;
     std::cout << "Save the game: save" << std::endl;
     std::cout << "Quit the game: quit" << std::endl;
     std::cout << std::endl;
@@ -315,14 +315,15 @@ void loadGamePage(int seed)
     load->loadFile(filename, player1, player2, game->getCentre(), factories, game->getBag(), game->getLid(), roundCounter);
     delete load;
     if (game->getCentre()->getTileColour(0) == FIRSTPLAYER) {
-        std::cout << "Its firstplayer token" << std::endl;
+        std::cout << "It's firstplayer token\n" << std::endl;
     }
     std::cout << "=== Azul Game Successfully Loaded ===" << std::endl;
-    std::cout << "Let’s Play!" << std::endl;
+    std::cout << "Let’s Play!\n" << std::endl;
     std::cout << "== INSTRUCTIONS ==" << std::endl;
-    std::cout << "Make a move: turn <factory index> <tile colour> <mosaic line index>" << std::endl;
+    std::cout << "Make a move: turn <factory index> <tile colour> <patternline index>" << std::endl;
     std::cout << "Save the game: save" << std::endl;
-    std::cout << "Quit the game: quit" << std::endl;
+    std::cout << "Quit the game: quit\n" << std::endl;
+    std::cout << "== Current Player Progress ==" << std::endl;
     printPlayerMosaic(player1);
     printPlayerMosaic(player2);
     std::cout << std::endl;
