@@ -64,7 +64,6 @@ void LoadSave::saveFile(std::string saveFile, Player *player1, Player *player2, 
 
 void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, Centre *centre, Factories *factories, Bag *bag, Lid *lid, int &currentPlayer)
 {
-    //Reading file in
     bool found = false;
     while (found == false)
     {
@@ -78,13 +77,13 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
 
             loadFile = filename;
         }
-        else 
+        else
         {
             found = true;
-            std::cout << "found" << std::endl;
         }
     }
-    
+
+    // Reading file in
     std::ifstream savedFile(loadFile);
 
     // while loop to read everything
@@ -94,7 +93,7 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
         std::string data;
         int k, dl;
 
-        // FACTORIES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /* FACTORIES */
         // Finding keyword line
         if (line.find("BAG") != std::string::npos)
         {
@@ -126,9 +125,14 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                if (data[k] != 'F') {
+                if (data[k] != 'F')
+                {
                     char d = data[k];
                     centre->addTile(d);
+                }
+                else if (data[k] == 'F')
+                {
+                    centre->addTile(FIRSTPLAYER);
                 }
             }
         }
@@ -149,7 +153,7 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             }
         }
 
-        // PLAYER_1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /* PLAYER_1 */
         if (line.find("PLAYER_1_NAME") != std::string::npos)
         {
             getData(line, data);
@@ -192,7 +196,8 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                if (data[k] != NOTILE) {
+                if (data[k] != NOTILE)
+                {
                     player1->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
                 }
             }
@@ -213,13 +218,12 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                     if (data[k] == NOTILE || data[k] == '.')
                     {
                         player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(k);
-                        std::cout<< "DEBUG: NOTILE removed" << std::endl;
                     }
                 }
             }
         }
 
-        // PLAYER_2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /* PLAYER_2 */
         if (line.find("PLAYER_2_NAME") != std::string::npos)
         {
             getData(line, data);
@@ -262,7 +266,8 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                if (data[k] != NOTILE) {
+                if (data[k] != NOTILE)
+                {
                     player2->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
                 }
             }
@@ -288,7 +293,7 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             }
         }
 
-        // OTHER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /* CURRENT PLAYER */
         if (line.find("CURRENT_PLAYER") != std::string::npos)
         {
             getData(line, data);
@@ -299,13 +304,12 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 std::string s = "";
                 s.push_back(data[k]);
                 currentPlayer = std::stoi(s);
-                
             }
         }
     }
 }
 
-//Getting the data after the '='
+// Getting the data after the '='
 void LoadSave::getData(std::string line, std::string &data)
 {
     int ll;
@@ -316,10 +320,8 @@ void LoadSave::getData(std::string line, std::string &data)
     {
         el = found + 1;
     }
-    //getting the line length
+    // Getting the line length
     ll = line.length();
 
     data = line.substr(el, ll - el);
 }
-
-
