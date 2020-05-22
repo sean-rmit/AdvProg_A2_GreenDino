@@ -1,0 +1,5 @@
+L
+gameTests/inputSaveFile1.txt
+turn 0 B 4
+save
+gameTests/actualSaveFile1.txt

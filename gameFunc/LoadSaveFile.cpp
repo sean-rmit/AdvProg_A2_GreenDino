@@ -130,6 +130,9 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                     char d = data[k];
                     centre->addTile(d);
                 }
+                else if (data[k] == 'F') {
+                    centre->addTile(FIRSTPLAYER);
+                }
             }
         }
 
@@ -213,7 +216,6 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                     if (data[k] == NOTILE || data[k] == '.')
                     {
                         player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(k);
-                        std::cout<< "DEBUG: NOTILE removed" << std::endl;
                     }
                 }
             }

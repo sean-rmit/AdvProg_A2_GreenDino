@@ -1,0 +1,5 @@
+L
+gameTests/inputSaveFile3.txt
+turn 0 U 6
+save
+gameTests/actualSaveFile3.txt
