@@ -8,8 +8,12 @@
 
 class Player {
 public:
+
+    // Constructor
     Player();
+    // Gets player and their score
     Player(std::string name);
+    // Deconstructor
     ~Player();
 
     std::string getPlayerName();

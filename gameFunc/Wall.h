@@ -23,8 +23,10 @@ public:
 
     // get line object at given index
     linePtr getLine(int index);
+    // Gets tile and puts it in the the wall at set index
     int addTile(char tile, int lineIndex, Lid *lid);
     
+    // Calculates bonus points for the player
     int addEndGameBonusPoints();
 
 private:
