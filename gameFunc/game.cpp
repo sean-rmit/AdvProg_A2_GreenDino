@@ -37,6 +37,9 @@ void Game::finaliseRound()
     player1->moveTilesFromBrokenTilesToLid(lid, centre);
     player2->moveTilesFromPatternLineToWall(lid);
     player2->moveTilesFromBrokenTilesToLid(lid, centre);
+    if (centre->size() == 0) {
+        centre->addTile(FIRSTPLAYER);
+    }
 }
 
 void Game::prepareNewRound()

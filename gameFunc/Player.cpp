@@ -223,6 +223,9 @@ bool Player::takeTilesFromCentre(char colour, Centre *centre, int patternLineInd
         {
             playerMosaic->getPlayerBrokenTiles()->getLine()->addTileToBack(centre->removeTile(0));
         }
+        else {
+            centre->removeTile(0);
+        }
     }
     return tilesTaken;
 }

@@ -307,17 +307,23 @@ void loadGamePage(int seed)
     bool gameOngoing = true;
     int roundCounter = 0; // odd = player 1 turn, even = player 2 turn
 
-    Centre *centre = game->getCentre();
     Factories *factories = game->getFactories();
 
+
     LoadSave *load = new LoadSave();
-    load->loadFile(filename, player1, player2, centre, factories, game->getBag(), game->getLid(), roundCounter);
+    load->loadFile(filename, player1, player2, game->getCentre(), factories, game->getBag(), game->getLid(), roundCounter);
+    delete load;
+    if (game->getCentre()->getTileColour(0) == FIRSTPLAYER) {
+        std::cout << "Its firstplayer token" << std::endl;
+    }
     std::cout << "=== Azul Game Successfully Loaded ===" << std::endl;
     std::cout << "Let’s Play!" << std::endl;
     std::cout << "== INSTRUCTIONS ==" << std::endl;
     std::cout << "Make a move: turn <factory index> <tile colour> <mosaic line index>" << std::endl;
     std::cout << "Save the game: save" << std::endl;
     std::cout << "Quit the game: quit" << std::endl;
+    printPlayerMosaic(player1);
+    printPlayerMosaic(player2);
     std::cout << std::endl;
     bool firstRoundSinceLoad = true;
 
@@ -359,7 +365,7 @@ void loadGamePage(int seed)
                 std::cout << player2->getPlayerName() << std::endl;
             }
 
-            printFactories(centre, factories);
+            printFactories(game->getCentre(), factories);
             std::cout << std::endl;
             if (roundCounter % 2 == 1)
             {
@@ -405,7 +411,7 @@ void loadGamePage(int seed)
                     std::string filename;
                     std::cin >> filename;
                     LoadSave *save = new LoadSave();
-                    save->saveFile(filename, player1, player2, centre, factories, game->getBag(), game->getLid(), roundCounter);
+                    save->saveFile(filename, player1, player2, game->getCentre(), factories, game->getBag(), game->getLid(), roundCounter);
                     delete save;
                 }
                 else if (playerMove == "quit")

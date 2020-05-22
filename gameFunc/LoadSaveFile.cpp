@@ -127,7 +127,8 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             for (k = 0; k < dl; k++)
             {
                 if (data[k] != 'F') {
-                    centre->addTile(data[k]);
+                    char d = data[k];
+                    centre->addTile(d);
                 }
             }
         }
@@ -191,7 +192,9 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                player1->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
+                if (data[k] != NOTILE) {
+                    player1->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
+                }
             }
         }
 
@@ -210,9 +213,8 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                     {
                         player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(i);
                     }
-                    else
-                    {
-                        player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    else {
+                        player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToIndex(data[k], i);
                     }
                 }
             }
@@ -261,7 +263,9 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
             dl = data.length();
             for (k = 0; k < dl; k++)
             {
-                player2->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
+                if (data[k] != NOTILE) {
+                    player2->getPlayerMosaic()->getPlayerBrokenTiles()->getLine()->addTileToBack(data[k]);
+                }
             }
         }
 
@@ -280,9 +284,8 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                     {
                         player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(i);
                     }
-                    else
-                    {
-                        player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToBack(data[k]);
+                    else {
+                        player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToIndex(data[k], i);
                     }
                 }
             }
