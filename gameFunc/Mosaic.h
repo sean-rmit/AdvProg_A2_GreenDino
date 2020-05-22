@@ -9,13 +9,17 @@
 class Mosaic {
     public:
 
+    // Constructor
     Mosaic();
+    // Deconstructor
     ~Mosaic();
 
     wallPtr getPlayerWall();
     patternLinesPtr getPlayerPatternLines();
     brokenTilesPtr getPlayerBrokenTiles();
+    // Gets the tile and puts it on the pattern line
     void putTileToPatternLine(char tile, int patternLineIndex);
+    // Gets the tiles and puts it to the floor/broken line
     void putTileToBrokenTiles(char tile);
 
     private:

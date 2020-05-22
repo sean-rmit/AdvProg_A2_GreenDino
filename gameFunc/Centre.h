@@ -9,24 +9,26 @@
 class Centre {
 public:
 
+    // Constructor
     Centre();
+    //Deconstructors
     ~Centre();
 
-    // copy constructor
+    // Copy constructor
     Centre(Centre& other);
 
-    // returns current size of factory
+    // Returns current size of factory
     int size();
 
-    // adds tiles to factory
+    // Adds tiles to factory
     void addTile(char tileP);
 
     char getTileColour(int index);
 
-    // removes tiles from a factory
+    // Removes tiles from a factory
     char removeTile(int index);
 
-    // removes all tiles from factories
+    // Removes all tiles from factories
     void clear();
 
     std::string getTilesAsString();
@@ -39,4 +41,4 @@ private:
 
 typedef Centre* centrePtr;
 
-#endif // FactoryCentre
+#endif // Factory Centre

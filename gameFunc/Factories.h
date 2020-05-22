@@ -8,12 +8,13 @@
 class Factories {
 public:
 
+    // Constructor
     Factories();
+    // Deconstructor
     ~Factories();
 
     // copy constructor
     Factories(Factories& other);
-
     // get factory object at given index
     factoryPtr getFactory(int index);
 
@@ -23,4 +24,4 @@ private:
 
 typedef Factories* factoriesPtr;
 
-#endif // GameFactories
+#endif // Game Factories

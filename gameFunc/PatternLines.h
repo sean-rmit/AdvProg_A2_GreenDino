@@ -11,13 +11,15 @@
 class PatternLines {
 public:
 
+    // Constructor
     PatternLines();
+    // Deconstructor
     ~PatternLines();
 
-    // copy constructor
+    // Copy constructor
     PatternLines(PatternLines& other);
 
-    // get line object at given index
+    // Get line object at given index
     linePtr getLine(int index);
 
 private:

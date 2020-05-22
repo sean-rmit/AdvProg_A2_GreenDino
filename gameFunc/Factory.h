@@ -5,24 +5,27 @@
 #include "TileBag.h"
 #include <string>
 #include <vector>
+
 #define FACTORY_SIZE 4
 
 class Factory {
 public:
 
+    // Constructor
     Factory();
+    // Deconstructor
     ~Factory();
 
-    // copy constructor
+    // Copy constructor
     Factory(Factory& other);
 
-    // returns current size of factory
+    // Returns current size of factory
     int size();
 
-    // returns the factory tiles array pointer
+    // Returns the factory tiles array pointer
     linePtr getLine();
 
-    // load factories with randomised tile selection
+    // Load factories with randomised tile selection
     void loadFactory(Bag *bag);
 
 private:
@@ -34,4 +37,4 @@ private:
 typedef Factory* factoryPtr;
 
 
-#endif // GameFactory
+#endif // Game Factory
