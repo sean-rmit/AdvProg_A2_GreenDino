@@ -76,32 +76,22 @@ void Bag::fillBagWithTiles(int seed) {
 
     // fill tempVector with red tiles
     for (int i = 0; i < RED_TILES_NUM; i++) {
-        // tilePtr tile = new char(RED);
-        // tempVector.push_back(tile);
         tempVector.push_back(RED);
     }
     // fill tempVector with yellow tiles
     for (int i = 0; i < YELLOW_TILES_NUM; i++) {
-        // tilePtr tile = new char(YELLOW);
-        // tempVector.push_back(tile);
         tempVector.push_back(YELLOW);
     }
     // fill tempVector with dark blue tiles
     for (int i = 0; i < DARKBLUE_TILES_NUM; i++) {
-        // tilePtr tile = new char(DARKBLUE);
-        // tempVector.push_back(tile);
         tempVector.push_back(DARKBLUE);
     }
     // fill tempVector with light blue tiles
     for (int i = 0; i < LIGHTBLUE_TILES_NUM; i++) {
-        // tilePtr tile = new char(LIGHTBLUE);
-        // tempVector.push_back(tile);
         tempVector.push_back(LIGHTBLUE);
     }
     // fill tempVector with black tiles
     for (int i = 0; i < BLACK_TILES_NUM; i++) {
-        // tilePtr tile = new char(BLACK);
-        // tempVector.push_back(tile);
         tempVector.push_back(BLACK);
     }
 
@@ -138,6 +128,4 @@ void Bag::fillBagWithTiles(int seed) {
             maxIndex--;
         }
     }
-    // lastly freeing up the memory in the empty tempVector
-    // std::vector<tilePtr>().swap(tempVector);
 }

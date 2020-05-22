@@ -355,8 +355,6 @@ void Player::moveTilesFromPatternLineToWall(Lid *lid)
         {
             for (int i = 0; i < playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->size(); i++)
             {
-                // playerMosaic->getPlayerWall()->getLine(lineIndex)->addTileToIndex(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->getTileColour(lineIndex), lineIndex);
-                // playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i);
                 int points = playerMosaic->getPlayerWall()->addTile(playerMosaic->getPlayerPatternLines()->getLine(lineIndex)->removeTile(i), lineIndex, lid);
                 addToPlayerScore(points);
             }
