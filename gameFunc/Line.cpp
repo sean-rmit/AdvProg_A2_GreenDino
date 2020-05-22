@@ -103,7 +103,13 @@ bool Line::hasTile(int index)
 
 bool Line::isFull()
 {
-    if (numTiles == array_length)
+    int counter = 0;
+    for (int i = 0; i < array_length; i++) {
+        if (line[i] != NOTILE) {
+            counter++;
+        }
+    }
+    if (counter == array_length)
     {
         return true;
     }

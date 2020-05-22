@@ -65,14 +65,12 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
                 {
                     adjacentTilesOnRow++;
                     col++;
-                    std::cout << col << std::endl;
                 }
                 col = i;
                 while (col - 1 >= 0 && wallLines[row]->hasTile(col - 1))
                 {
                     adjacentTilesOnRow++;
                     col--;
-                    std::cout << col << std::endl;
                 }
                 col = i;
                 // check column
@@ -80,14 +78,12 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
                 {
                     adjacentTilesOnCol++;
                     row++;
-                    std::cout << row << std::endl;
                 }
                 row = lineIndex;
                 while (row-1 >= 0 && wallLines[row - 1]->hasTile(col))
                 {
                     adjacentTilesOnCol++;
                     row--;
-                    std::cout << row << std::endl;
                 }
                 if (adjacentTilesOnRow != 0)
                 {
@@ -109,7 +105,6 @@ int Wall::addTile(char tile, int lineIndex, Lid *lid)
             }
         }
     }
-    std::cout << "added points: " << points << std::endl;
     return points;
 }
 

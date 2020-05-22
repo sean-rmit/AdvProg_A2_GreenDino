@@ -209,12 +209,11 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    if (data[k] == NOTILE)
+                    player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToIndex(data[k], k);
+                    if (data[k] == NOTILE || data[k] == '.')
                     {
-                        player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(i);
-                    }
-                    else {
-                        player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToIndex(data[k], i);
+                        player1->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(k);
+                        std::cout<< "DEBUG: NOTILE removed" << std::endl;
                     }
                 }
             }
@@ -280,12 +279,10 @@ void LoadSave::loadFile(std::string loadFile, Player *player1, Player *player2, 
                 dl = data.length();
                 for (k = 0; k < dl; k++)
                 {
-                    if (data[k] == NOTILE)
+                    player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToIndex(data[k], k);
+                    if (data[k] == NOTILE || data[k] == '.')
                     {
-                        player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(i);
-                    }
-                    else {
-                        player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->addTileToIndex(data[k], i);
+                        player2->getPlayerMosaic()->getPlayerWall()->getLine(i)->removeTile(k);
                     }
                 }
             }
